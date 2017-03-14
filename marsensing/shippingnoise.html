@@ -1,0 +1,956 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Shipping Noise Underwater Acoustic Map</title>
+	<meta charset="utf-8" />
+	
+	<link rel="stylesheet" href="js/leaflet.css" />
+	<link rel="stylesheet" href="css/layout.css" />
+	<!--[if lte IE 8]><link rel="stylesheet" href="js/leaflet.ie.css" /><![endif]-->
+
+	<link href="css/ui-lightness/jquery-ui-1.8.17.custom.css" rel="stylesheet" type="text/css"/>
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/jquery-ui-1.11.1.min.js"></script>
+	<script src="js/jquery.timers.js"></script>
+
+	<script src="js/leaflet.js"></script>
+	<!-- <script src="/test.json.js"></script> -->
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-32138658-1']);
+		_gaq.push(['_trackPageview']);
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+</head>
+<body onload="onLoad()" onmouseup="mapX.dragging.enable();">
+	<script type="text/javascript">
+//	$(function() {
+		//$( "#tabs-2" ).on( "tabsbeforeload", function( event, ui ) {
+            	//	//control comes here when you clicked on tab 1
+            	//	alert('1234');	
+                //});
+//	});
+	</script>
+
+	<script type="text/javascript">
+	function pageWidth() {return window.innerWidth != null?	window.innerWidth: document.body != null? document.body.clientWidth:null;}
+	function pageHeight() {return window.innerHeight? window.innerHeight : Math.max(document.body.clientHeight, document.documentElement.clientHeight);}
+	</script>
+
+	<div id="main_layer">
+		<div id="tabs">
+		<ul>
+			<li><a href="#tabs-1">Noise Map</a></li>
+			<li><a href="#tabs-2">Noise Map Statistics - p05</a></li>
+			<li><a href="#tabs-3">Noise Map Statistics - p95</a></li>
+			<li><a href="#tabs-4">Noise Map Statistics - SEL7</a></li>
+			<li><a href="FAQ_en.html">FAQ (English)</a></li>
+			<li><a href="FAQ_pt.html">FAQ (Portugues)</a></li>
+		</ul>
+		<div id="tabs-1">
+			<div id="mappy">
+				<!-- <div id="info">info box</div> -->
+				<!-- <div id="map" style="height: 600px"></div> -->
+				<div id="map" style="height: 600px"></div>
+				<div id="basemapslidercontainer">
+					<!-- <center><div id="basemapslidertext" style="font-size: 12px; font-weight: bold; background: white; opacity:0.6; padding: 2px">&lt;&lt; Aerial | Map &gt;&gt;</div></center> -->
+					<div id="basemapslidertext" style="font-size: 12px; font-weight: bold; background: #FFB249; opacity:1.0; padding: 2px">&lt;&lt;Change Time Here&gt;&gt;</div>
+					<div id="basemapslider" style="font-size:62.5%; margin: 10px; width: 250px;" onmousedown="mapX.dragging.disable();"></div>
+				</div>
+				<div id="togglebutton" class="play"></div>
+				<div id="titletext">Shipping Noise Underwater Acoustic Map (&beta;)</div>
+				<div id="zoomslidercontainer">
+					<div id="zoomslider" style="font-size:62.5%; margin: 10px; height: 125px" onmousedown="mapX.dragging.disable();"></div>
+				</div>
+				<div id="colorbar">
+					<img src="/images/colorbar.png">
+				</div>
+				<div id="logo">
+					<img src="/images/MarSensingLogo_100.png">
+				</div>
+				<!-- <div id="hidden_image">
+					<img src="" alt="">
+				</div> -->
+			</div> <!-- mappy -->
+		</div><!-- tabs-1 -->
+		<div id="tabs-2">
+			<div id="mappy2">
+				<!-- <div id="info">info box</div> -->
+				<!-- <div id="map" style="height: 600px"></div> -->
+				<div id="mapSTATISTICSp05" style="height: 600px"></div>
+				<div id="titletext">Level exceedance (95% of the time).</div>
+				<div id="colorbar">
+					<img src="/images/colorbar.png">
+				</div>
+				<div id="logo">
+					<img src="/images/MarSensingLogo_100.png">
+				</div>
+				<!-- <div id="hidden_image">
+					<img src="" alt="">
+				</div> -->
+			</div> <!-- mappy2 -->
+		</div><!-- tabs-2 -->
+		<div id="tabs-3">
+			<div id="mappy3">
+				<!-- <div id="info">info box</div> -->
+				<!-- <div id="map" style="height: 600px"></div> -->
+				<div id="mapSTATISTICSp95" style="height: 600px"></div>
+				<div id="titletext">Level exceedance (5% of the time).</div>
+				<div id="colorbar">
+					<img src="/images/colorbar.png">
+				</div>
+				<div id="logo">
+					<img src="/images/MarSensingLogo_100.png">
+				</div>
+				<!-- <div id="hidden_image">
+					<img src="" alt="">
+				</div> -->
+			</div> <!-- mappy3 -->
+		</div><!-- tabs-3 -->
+		<div id="tabs-4">
+			<div id="mappy4">
+				<!-- <div id="info">info box</div> -->
+				<!-- <div id="map" style="height: 600px"></div> -->
+				<div id="mapSTATISTICSSEL7" style="height: 600px"></div>
+				<div id="titletext">Cumulated Sound Exposure Level (last 7 days).</div>
+				<div id="colorbar">
+					<img src="/images/colorbar.png">
+				</div>
+				<div id="logo">
+					<img src="/images/MarSensingLogo_100.png">
+				</div>
+				<!-- <div id="hidden_image">
+					<img src="" alt="">
+				</div> -->
+			</div> <!-- mappy4 -->
+		</div><!-- tabs-4 -->
+		<!-- <div id="tabs-3">
+			FAQ
+		</div> --> <!-- tabs-3 -->
+	
+		</div><!-- tabs -->
+	</div> <!-- main_layer -->
+	<div id="footer">
+		&copy;2011-2015&nbsp;<a href="http://www.marsensing.com" title="MarSensing Lda">MarSensing
+		Lda</a>, sponsored by <a href="http://www.cintal.ualg.pt"
+		title="CINTAL">CINTAL</a> - University of the Algarve (<a
+		href="http://www.ualg.pt/">UALG</a>)
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			//console.log('ready function');		
+			//var curheight = 600;
+			//var shiplayers = [];
+			mapX = new L.Map('map');
+			mapSTATp05 = new L.Map('mapSTATISTICSp05');
+			mapSTATp95 = new L.Map('mapSTATISTICSp95');
+			mapSTATSEL7 = new L.Map('mapSTATISTICSSEL7');
+			var OSMTileUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+				Attribution = 'Map data &copy; 2015 OpenStreetMap contributors | Underwater Acoustic Overlay &copy; 2011-2015 MarSensing',
+				OSMlayer = new L.TileLayer(OSMTileUrl, {maxZoom: 18, attribution: Attribution});
+				OSMlayer2 = new L.TileLayer(OSMTileUrl, {maxZoom: 18, attribution: Attribution});
+				OSMlayer3 = new L.TileLayer(OSMTileUrl, {maxZoom: 18, attribution: Attribution});
+				OSMlayer4 = new L.TileLayer(OSMTileUrl, {maxZoom: 18, attribution: Attribution});
+
+			var obmUrl = 'http://services.arcgisonline.com/ArcGIS/rest/services/Ocean_Basemap/MapServer/tile/{z}/{y}/{x}',
+				obmAttribution = 'Tiles &copy; Esri &mdash; Sources: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ, and Esri | Underwater Acoustic Overlay &copy; 2011-2015 MarSensing',
+				//obm = new L.TileLayer(obmUrl, {maxZoom: 13, attribution: obmAttribution}).addTo(mapX);
+				obm = new L.TileLayer(obmUrl, {maxZoom: 13, attribution: obmAttribution});
+				obm2 = new L.TileLayer(obmUrl, {maxZoom: 13, attribution: obmAttribution});
+				obm3 = new L.TileLayer(obmUrl, {maxZoom: 13, attribution: obmAttribution});
+				obm4 = new L.TileLayer(obmUrl, {maxZoom: 13, attribution: obmAttribution});
+				//mapX.addLayer(obm);
+
+			/* var OpenSeaMapTileUrl = 'http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png',
+				Attribution = '&copy; 2012 OpenSeaMap contributors',
+				OpenSeaMaplayer = new L.TileLayer(OpenSeaMapTileUrl,
+				{maxZoom: 18, attribution: Attribution}); */
+		
+			/* var LocalTileUrl = '/maps/test/tilemaps/000/{z}/{x}/{y}.png',
+				Attribution = '&copy; 2012 MarSensing Lda',
+				LocalTileLayer = new L.TileLayer(LocalTileUrl,
+				{maxZoom: 14, attribution: Attribution}); */
+		
+			//map.setView(new L.LatLng(37.50, -8.8), 7).addLayer(OSMlayer);
+			//if(curheight>800) {
+				//mapX.setView(new L.LatLng(40, 0), 6).addLayer(OSMlayer);
+				
+				//mapX.setView(new L.LatLng(40, 0), 6).addLayer(obm);
+				
+				mapX.setView(new L.LatLng(45, 0), 5).addLayer(obm);
+				//mapSTATp95.setView(new L.LatLng(45, 0), 5).addLayer(OSMlayer);
+				mapSTATp05.setView(new L.LatLng(37.50, -8.8), 7).addLayer(obm2);
+				mapSTATp95.setView(new L.LatLng(37.50, -8.8), 7).addLayer(obm3);
+				mapSTATSEL7.setView(new L.LatLng(37.50, -8.8), 7).addLayer(obm4);
+				
+				//mapX.setView(new L.LatLng(37.50, -8.8), 7).addLayer(OSMlayer); //for PortugalSW only
+			//} else {
+			//	map.setView(new L.LatLng(37.50, -8.8), 3).addLayer(OSMlayer);
+			//}
+
+			openseamap = new L.TileLayer('http://tiles.openseamap.org/seamark/{z}/{x}/{y}.png', {maxZoom: 19, zIndex:99999}).addTo(mapX);
+
+			$('#togglebutton').click( function() {
+				//$('#togglebutton').removeClass('play').addClass('pause');
+				if ($(this).attr("class") == "play") {
+					$('#togglebutton').css("background-image", "url(/images/pause.png)");
+					$(this).attr("class", "pause");
+					//console.log($("#basemapslider").slider('value'));
+					//console.log(maxtime);
+					$(this).everyTime(2000, 'maptimer', function (){
+						var tmp = $("#basemapslider").slider('value') + 600;
+						if( tmp > maxtimePortugalSW)
+							tmp = maxtimePortugalSW - 3600*24;
+						$("#basemapslider").slider("option", 'value', tmp );
+					});
+					//$("#basemapslider").slider("option", 'value', 0);
+					//$('#togglebutton').removeClass('play').addClass('pause');
+				} else {
+					$('#togglebutton').css("background-image", "url(/images/play.png)");
+					$(this).attr("class", "play");
+					$(this).stopTime('maptimer');
+					//$('#togglebutton').removeClass('pause').addClass('play');
+				}
+				return false;
+			});
+
+			var LeafIcon = L.Icon.extend({
+				iconUrl: 'http://www.shippingnoise.com/maps/test/mm_20_green.png',
+			        shadowUrl: 'http://www.shippingnoise.com/maps/test/mm_20_shadow.png',
+				iconSize: new L.Point(12, 20),
+				shadowSize: new L.Point(22, 20),
+				iconAnchor: new L.Point(0, 0),
+				popupAnchor: new L.Point(0, 0)
+			});
+
+			var redIcon = new LeafIcon('mm_20_red.png');
+			var greenIcon = new LeafIcon('mm_20_green.png');
+			var orangeIcon = new LeafIcon('mm_20_orange.png');
+			/*
+			map.on('click', onMapClick);
+			var popup = new L.Popup();
+			function onMapClick(e) {
+				var latlngStr = '(' + e.latlng.lat.toFixed(3) + ', ' + e.latlng.lng.toFixed(3) + ')';
+				popup.setLatLng(e.latlng);
+				popup.setContent("You clicked the map at " + latlngStr);
+				map.openPopup(popup);
+			}
+			*/
+			shipLayer = new L.GeoJSON(null, {
+				pointToLayer: function (latlng) {
+					return new L.Marker(latlng, {
+		                		icon: redIcon
+					});
+				}
+	        	});
+			var nowtime = 1327968000;
+			//var nowtime = 1341101400;
+			//var maxtime = (Math.floor(nowtime/600)*600)-600;
+			var maxtimePortugalSW = 0;
+			var maxtimePelagosFrance = 0;
+			var maxtimeTheChannel = 0;
+			var maxtimeSpain = 0;
+			var maxtimeLaManche = 0;
+			var PortugalSW_p05 = '';
+			var PortugalSW_p95 = '';
+			var PortugalSW_SEL7 = '';
+			var LaManche_p05 = '';
+			var LaManche_p95 = '';
+			var LaManche_SEL7 = '';
+			var Spain_p05 = '';
+			var Spain_p95 = '';
+			var Spain_SEL7 = '';
+
+			$.ajax({
+				type: 'GET',
+				url: 'getdirPortugalSW.php',
+				dataType: 'json',
+				contentType: 'application/json; charset=utf-8',
+				async: false,	// THIS HAS TO BE ASYNC
+				success: function (result) {
+					maxtimePortugalSW = parseInt(result);
+					//shipLayer.addGeoJSON(result)
+				},
+				error: function (req, status, error) {
+				}
+			});
+
+			$.ajax({
+				type: 'GET',
+				url: 'getdirPortugalSW_p05.php',
+				dataType: 'json',
+				contentType: 'application/json; charset=utf-8',
+				async: false,	// THIS HAS TO BE ASYNC
+				success: function (result) {
+					PortugalSW_p05 = result;
+					//alert(PortugalSW_p95);
+					//shipLayer.addGeoJSON(result)
+				},
+				error: function (req, status, error) {
+					//alert(req);
+					//alert(status);
+					//alert(error);
+				}
+			});
+
+			$.ajax({
+				type: 'GET',
+				url: 'getdirPortugalSW_p95.php',
+				dataType: 'json',
+				contentType: 'application/json; charset=utf-8',
+				async: false,	// THIS HAS TO BE ASYNC
+				success: function (result) {
+					PortugalSW_p95 = result;
+					//alert(PortugalSW_p95);
+					//shipLayer.addGeoJSON(result)
+				},
+				error: function (req, status, error) {
+					//alert(req);
+					//alert(status);
+					//alert(error);
+				}
+			});
+			
+			$.ajax({
+				type: 'GET',
+				url: 'getdirPortugalSW_SEL7.php',
+				dataType: 'json',
+				contentType: 'application/json; charset=utf-8',
+				async: false,	// THIS HAS TO BE ASYNC
+				success: function (result) {
+					PortugalSW_SEL7 = result;
+					//alert(PortugalSW_p95);
+					//shipLayer.addGeoJSON(result)
+				},
+				error: function (req, status, error) {
+					//alert(req);
+					//alert(status);
+					//alert(error);
+				}
+			});
+
+
+			
+			$.ajax({
+				type: 'GET',
+				url: 'getdirPelagosFrance.php',
+				dataType: 'json',
+				contentType: 'application/json; charset=utf-8',
+				async: false,	// THIS HAS TO BE ASYNC
+				success: function (result) {
+					maxtimePelagosFrance = parseInt(result);
+					//shipLayer.addGeoJSON(result)
+				},
+				error: function (req, status, error) {
+				}
+			});
+
+			$.ajax({
+				type: 'GET',
+				url: 'getdirTheChannel.php',
+				dataType: 'json',
+				contentType: 'application/json; charset=utf-8',
+				async: false,	// THIS HAS TO BE ASYNC
+				success: function (result) {
+					maxtimeTheChannel = parseInt(result);
+					//shipLayer.addGeoJSON(result)
+				},
+				error: function (req, status, error) {
+				}
+			});
+
+			$.ajax({
+				type: 'GET',
+				url: 'getdirSpain.php',
+				dataType: 'json',
+				contentType: 'application/json; charset=utf-8',
+				async: false,	// THIS HAS TO BE ASYNC
+				success: function (result) {
+					maxtimeSpain = parseInt(result);
+					//shipLayer.addGeoJSON(result)
+				},
+				error: function (req, status, error) {
+				}
+			});
+
+			$.ajax({
+				type: 'GET',
+				url: 'getdirSpain_p05.php',
+				dataType: 'json',
+				contentType: 'application/json; charset=utf-8',
+				async: false,	// THIS HAS TO BE ASYNC
+				success: function (result) {
+					Spain_p05 = result;
+					//alert(PortugalSW_p95);
+					//shipLayer.addGeoJSON(result)
+				},
+				error: function (req, status, error) {
+					//alert(req);
+					//alert(status);
+					//alert(error);
+				}
+			});
+
+			$.ajax({
+				type: 'GET',
+				url: 'getdirSpain_p95.php',
+				dataType: 'json',
+				contentType: 'application/json; charset=utf-8',
+				async: false,	// THIS HAS TO BE ASYNC
+				success: function (result) {
+					Spain_p95 = result;
+					//alert(PortugalSW_p95);
+					//shipLayer.addGeoJSON(result)
+				},
+				error: function (req, status, error) {
+					//alert(req);
+					//alert(status);
+					//alert(error);
+				}
+			});
+			
+			$.ajax({
+				type: 'GET',
+				url: 'getdirSpain_SEL7.php',
+				dataType: 'json',
+				contentType: 'application/json; charset=utf-8',
+				async: false,	// THIS HAS TO BE ASYNC
+				success: function (result) {
+					Spain_SEL7 = result;
+					//alert(PortugalSW_p95);
+					//shipLayer.addGeoJSON(result)
+				},
+				error: function (req, status, error) {
+					//alert(req);
+					//alert(status);
+					//alert(error);
+				}
+			});
+
+
+			$.ajax({
+				type: 'GET',
+				url: 'getdirLaManche.php',
+				dataType: 'json',
+				contentType: 'application/json; charset=utf-8',
+				async: false,	// THIS HAS TO BE ASYNC
+				success: function (result) {
+					maxtimeLaManche = parseInt(result);
+					//shipLayer.addGeoJSON(result)
+				},
+				error: function (req, status, error) {
+				}
+			});
+
+			$.ajax({
+				type: 'GET',
+				url: 'getdirLaManche_p05.php',
+				dataType: 'json',
+				contentType: 'application/json; charset=utf-8',
+				async: false,	// THIS HAS TO BE ASYNC
+				success: function (result) {
+					LaManche_p05 = result;
+					//alert(PortugalSW_p95);
+					//shipLayer.addGeoJSON(result)
+				},
+				error: function (req, status, error) {
+					//alert(req);
+					//alert(status);
+					//alert(error);
+				}
+			});
+
+			$.ajax({
+				type: 'GET',
+				url: 'getdirLaManche_p95.php',
+				dataType: 'json',
+				contentType: 'application/json; charset=utf-8',
+				async: false,	// THIS HAS TO BE ASYNC
+				success: function (result) {
+					LaManche_p95 = result;
+					//alert(PortugalSW_p95);
+					//shipLayer.addGeoJSON(result)
+				},
+				error: function (req, status, error) {
+					//alert(req);
+					//alert(status);
+					//alert(error);
+				}
+			});
+			
+			$.ajax({
+				type: 'GET',
+				url: 'getdirLaManche_SEL7.php',
+				dataType: 'json',
+				contentType: 'application/json; charset=utf-8',
+				async: false,	// THIS HAS TO BE ASYNC
+				success: function (result) {
+					LaManche_SEL7 = result;
+					//alert(PortugalSW_p95);
+					//shipLayer.addGeoJSON(result)
+				},
+				error: function (req, status, error) {
+					//alert(req);
+					//alert(status);
+					//alert(error);
+				}
+			});
+
+			/*
+          		$.ajax({
+              			type: 'GET',
+              			url: 'http://www.shippingnoise.com/maps/test/get_shipPOS_json.php?ts=' + maxtime,
+              			dataType: 'json',
+              			contentType: 'application/json; charset=utf-8',
+              			success: function (result) {
+              				shipLayer.addGeoJSON(result)
+              			},
+              			error: function (req, status, error) {
+              			}
+            		});
+            		*/
+
+			mapX.addLayer(shipLayer);
+			var geojsonLayer = new L.GeoJSON();
+			function handleGeoJSON(data) {
+			        geojsonLayer.addGeoJSON(data);
+		        }
+
+			function removeMarkers() {
+				for (i=0;i<shiplayer.length;i++) {
+					mapX.removeLayer(shipLayer[i]);
+				}
+				shiplayer=[];
+			}
+
+			var myDate = new Date(maxtimePortugalSW * 1000.0);
+
+			document.getElementById('basemapslidertext').innerHTML = 'Change Date / Time Here' + '<br />'  + myDate.toGMTString();
+	
+			// Portugal South / West
+			var mapDirPortugalSW = "maps/PortugalSW/";
+			var southWest = new L.LatLng(36.31,-11.0);
+			var northEast = new L.LatLng(39.35,-7.48);
+			var imageBounds = new L.LatLngBounds(southWest, northEast);
+			var noise_mapPortugalSW = mapDirPortugalSW + maxtimePortugalSW + ".png";
+			//var noise_mapPortugalSW = mapDirPortugalSW + maxtimePortugalSW + ".svg";
+			var imageLayer_PortugalSW = new L.ImageOverlay( noise_mapPortugalSW, imageBounds, {zIndex:99});
+			mapX.addLayer(imageLayer_PortugalSW);
+
+			// Portugal South / West Statistics p05
+			var mapDirPortugalSW_p05 = "maps/PortugalSW/Statistics/p05/";
+			var southWest = new L.LatLng(36.31,-11.0);
+			var northEast = new L.LatLng(39.35,-7.48);
+			var imageBounds = new L.LatLngBounds(southWest, northEast);
+			var noise_mapPortugalSW_p05 = mapDirPortugalSW_p05 + PortugalSW_p05;
+			//var noise_mapPortugalSW = mapDirPortugalSW + maxtimePortugalSW + ".svg";
+			var imageLayer_PortugalSW_p05 = new L.ImageOverlay( noise_mapPortugalSW_p05, imageBounds, {zIndex:99});
+			mapSTATp05.addLayer(imageLayer_PortugalSW_p05);
+
+			// Portugal South / West Statistics p95
+			var mapDirPortugalSW_p95 = "maps/PortugalSW/Statistics/p95/";
+			var southWest = new L.LatLng(36.31,-11.0);
+			var northEast = new L.LatLng(39.35,-7.48);
+			var imageBounds = new L.LatLngBounds(southWest, northEast);
+			var noise_mapPortugalSW_p95 = mapDirPortugalSW_p95 + PortugalSW_p95;
+			//var noise_mapPortugalSW = mapDirPortugalSW + maxtimePortugalSW + ".svg";
+			var imageLayer_PortugalSW_p95 = new L.ImageOverlay( noise_mapPortugalSW_p95, imageBounds, {zIndex:99});
+			mapSTATp95.addLayer(imageLayer_PortugalSW_p95);
+
+			// Portugal South / West Statistics SEL7
+			var mapDirPortugalSW_SEL7 = "maps/PortugalSW/Statistics/SEL7/";
+			var southWest = new L.LatLng(36.31,-11.0);
+			var northEast = new L.LatLng(39.35,-7.48);
+			var imageBounds = new L.LatLngBounds(southWest, northEast);
+			var noise_mapPortugalSW_SEL7 = mapDirPortugalSW_SEL7 + PortugalSW_SEL7;
+			//var noise_mapPortugalSW = mapDirPortugalSW + maxtimePortugalSW + ".svg";
+			var imageLayer_PortugalSW_SEL7 = new L.ImageOverlay( noise_mapPortugalSW_SEL7, imageBounds, {zIndex:99});
+			mapSTATSEL7.addLayer(imageLayer_PortugalSW_SEL7);
+
+			// Pelagos Sanctuary
+			var mapDirPelagosFrance = "maps/PelagosFrance/";
+			var southWest = new L.LatLng(41.28333,6.16667);
+			var northEast = new L.LatLng(43.76333,10.246667);
+			var imageBounds = new L.LatLngBounds(southWest, northEast);
+			var noise_mapPelagosFrance = mapDirPelagosFrance + maxtimePelagosFrance + ".png";
+			var imageLayer_PelagosFrance = new L.ImageOverlay(noise_mapPelagosFrance, imageBounds, {opacity: 0.7});
+			/* mapX.addLayer(imageLayer_PelagosFrance); */
+
+			// The English Channel
+			var mapDirTheChannel = "maps/TheChannel/";
+			var southWest = new L.LatLng(48.5,-3.5);
+			var northEast = new L.LatLng(51.0,2.0);
+			var imageBounds = new L.LatLngBounds(southWest, northEast);
+			var noise_mapTheChannel = mapDirTheChannel + maxtimeTheChannel + ".png";
+			var imageLayer_TheChannel = new L.ImageOverlay(noise_mapTheChannel, imageBounds, {opacity: 0.7});
+			mapX.addLayer(imageLayer_TheChannel);
+
+			// Spain
+			var mapDirSpain = "maps/Spain/";
+			var southWest = new L.LatLng(39.0,0);
+			var northEast = new L.LatLng(42.0,4.0);
+			var imageBounds = new L.LatLngBounds(southWest, northEast);
+			var noise_mapSpain = mapDirSpain + maxtimeSpain + ".png";
+			var imageLayer_Spain = new L.ImageOverlay(noise_mapSpain, imageBounds, {opacity: 0.7});
+			mapX.addLayer(imageLayer_Spain);
+
+			// Spain Statistics p05
+			var mapDirSpain_p05 = "maps/Spain/Statistics/p05/";
+			var southWest = new L.LatLng(39.0,0);
+			var northEast = new L.LatLng(42.0,4.0);
+			var imageBounds = new L.LatLngBounds(southWest, northEast);
+			var noise_mapSpain_p05 = mapDirSpain_p05 + Spain_p05;
+			//var noise_mapPortugalSW = mapDirPortugalSW + maxtimePortugalSW + ".svg";
+			var imageLayer_Spain_p05 = new L.ImageOverlay( noise_mapSpain_p05, imageBounds, {zIndex:99});
+			mapSTATp05.addLayer(imageLayer_Spain_p05);
+
+			// Spain Statistics p95
+			var mapDirSpain_p95 = "maps/Spain/Statistics/p95/";
+			var southWest = new L.LatLng(39.0,0);
+			var northEast = new L.LatLng(42.0,4.0);
+			var imageBounds = new L.LatLngBounds(southWest, northEast);
+			var noise_mapSpain_p95 = mapDirSpain_p95 + Spain_p95;
+			//var noise_mapPortugalSW = mapDirPortugalSW + maxtimePortugalSW + ".svg";
+			var imageLayer_Spain_p95 = new L.ImageOverlay( noise_mapSpain_p95, imageBounds, {zIndex:99});
+			mapSTATp95.addLayer(imageLayer_Spain_p95);
+
+			// Spain Statistics SEL7
+			var mapDirSpain_SEL7 = "maps/Spain/Statistics/SEL7/";
+			var southWest = new L.LatLng(39.0,0);
+			var northEast = new L.LatLng(42.0,4.0);
+			var imageBounds = new L.LatLngBounds(southWest, northEast);
+			var noise_mapSpain_SEL7 = mapDirSpain_SEL7 + Spain_SEL7;
+			//var noise_mapPortugalSW = mapDirPortugalSW + maxtimePortugalSW + ".svg";
+			var imageLayer_Spain_SEL7 = new L.ImageOverlay( noise_mapSpain_SEL7, imageBounds, {zIndex:99});
+			mapSTATSEL7.addLayer(imageLayer_Spain_SEL7);
+
+
+			// LaManche
+			var mapDirLaManche = "maps/LaManche/";
+			var southWest = new L.LatLng(49.0,-1.0);
+			var northEast = new L.LatLng(52.0,4.0);
+			var imageBounds = new L.LatLngBounds(southWest, northEast);
+			var noise_mapLaManche = mapDirLaManche + maxtimeLaManche + ".png";
+			var imageLayer_LaManche = new L.ImageOverlay(noise_mapLaManche, imageBounds, {opacity: 0.7});
+			mapX.addLayer(imageLayer_LaManche);
+
+			// LaManche Statistics p05
+			var mapDirLaManche_p05 = "maps/LaManche/Statistics/p05/";
+			var southWest = new L.LatLng(49.0,-1.0);
+			var northEast = new L.LatLng(52.0,4.0);
+			var imageBounds = new L.LatLngBounds(southWest, northEast);
+			var noise_mapLaManche_p05 = mapDirLaManche_p05 + LaManche_p05;
+			//var noise_mapPortugalSW = mapDirPortugalSW + maxtimePortugalSW + ".svg";
+			var imageLayer_LaManche_p05 = new L.ImageOverlay( noise_mapLaManche_p05, imageBounds, {zIndex:99});
+			mapSTATp05.addLayer(imageLayer_LaManche_p05);
+
+			// LaManche Statistics p95
+			var mapDirLaManche_p95 = "maps/LaManche/Statistics/p95/";
+			var southWest = new L.LatLng(49.0,-1.0);
+			var northEast = new L.LatLng(52.0,4.0);
+			var imageBounds = new L.LatLngBounds(southWest, northEast);
+			var noise_mapLaManche_p95 = mapDirLaManche_p95 + LaManche_p95;
+			//var noise_mapPortugalSW = mapDirPortugalSW + maxtimePortugalSW + ".svg";
+			var imageLayer_LaManche_p95 = new L.ImageOverlay( noise_mapLaManche_p95, imageBounds, {zIndex:99});
+			mapSTATp95.addLayer(imageLayer_LaManche_p95);
+
+			// LaManche Statistics SEL7
+			var mapDirLaManche_SEL7 = "maps/LaManche/Statistics/SEL7/";
+			var southWest = new L.LatLng(49.0,-1.0);
+			var northEast = new L.LatLng(52.0,4.0);
+			var imageBounds = new L.LatLngBounds(southWest, northEast);
+			var noise_mapLaManche_SEL7 = mapDirLaManche_SEL7 + LaManche_SEL7;
+			//var noise_mapPortugalSW = mapDirPortugalSW + maxtimePortugalSW + ".svg";
+			var imageLayer_LaManche_SEL7 = new L.ImageOverlay( noise_mapLaManche_SEL7, imageBounds, {zIndex:99});
+			mapSTATSEL7.addLayer(imageLayer_LaManche_SEL7);
+
+
+			var baseMaps = {
+				"Open Street Map": OSMlayer,
+				"ESRI Ocean Base Map": obm
+			};
+
+			var baseMapsSTATSp05 = {
+				"Open Street Map": OSMlayer2,
+				"ESRI Ocean Base Map": obm2
+			};
+
+			var baseMapsSTATSp95 = {
+				"Open Street Map": OSMlayer3,
+				"ESRI Ocean Base Map": obm3
+			};
+
+			var baseMapsSTATSSEL7 = {
+				"Open Street Map": OSMlayer4,
+				"ESRI Ocean Base Map": obm4
+			};
+
+			var overlayMaps = {
+				/* "Open Sea Map": OpenSeaMaplayer, */
+				/* "Test Local Tile Layer": LocalTileLayer, */
+				"UW Noise PortugalSW": imageLayer_PortugalSW,
+				/* "UW Noise Pelagos France": imageLayer_PelagosFrance, */
+				"UW Noise English Channel": imageLayer_TheChannel,
+				"UW Noise Spain": imageLayer_Spain,
+				"UW Noise LaManche": imageLayer_LaManche,
+				"OpenSeaMap": openseamap,
+				"AIS Ship Information:": shipLayer
+			};
+
+			var overlayMapsSTATSp05 = {
+				/* "Open Sea Map": OpenSeaMaplayer, */
+				/* "Test Local Tile Layer": LocalTileLayer, */
+				"UW Noise PortugalSW p05": imageLayer_PortugalSW_p05,
+				"UW Noise LaManche p05": imageLayer_LaManche_p05,
+				"UW Noise Spain p05": imageLayer_Spain_p05,
+				"AIS Ship Information:": shipLayer
+			};
+
+			var overlayMapsSTATSp95 = {
+				/* "Open Sea Map": OpenSeaMaplayer, */
+				/* "Test Local Tile Layer": LocalTileLayer, */
+				"UW Noise PortugalSW p95": imageLayer_PortugalSW_p95,
+				"UW Noise LaManche p95": imageLayer_LaManche_p95,
+				"UW Noise Spain p95": imageLayer_Spain_p95,
+				"AIS Ship Information:": shipLayer
+			};
+		
+			var overlayMapsSTATSSEL7 = {
+				/* "Open Sea Map": OpenSeaMaplayer, */
+				/* "Test Local Tile Layer": LocalTileLayer, */
+				"UW Noise PortugalSW SEL7": imageLayer_PortugalSW_SEL7,
+				"UW Noise LaManche SEL7": imageLayer_LaManche_SEL7,
+				"UW Noise Spain SEL7": imageLayer_Spain_SEL7,
+				"AIS Ship Information:": shipLayer
+			};
+		
+			var layersControl = new L.Control.Layers(baseMaps, overlayMaps);
+			mapX.addControl(layersControl);
+			var layersControl_p05 = new L.Control.Layers(baseMapsSTATSp05, overlayMapsSTATSp05);
+			mapSTATp05.addControl(layersControl_p05);
+			var layersControl_p95 = new L.Control.Layers(baseMapsSTATSp95, overlayMapsSTATSp95);
+			mapSTATp95.addControl(layersControl_p95);
+			var layersControl_SEL7 = new L.Control.Layers(baseMapsSTATSSEL7, overlayMapsSTATSSEL7);
+			mapSTATSEL7.addControl(layersControl_SEL7);
+
+			$("#basemapslider").slider({
+			        animate: true,
+			        value: 1,
+				// min: maxtime - 3600*24*7,
+				min: maxtimePortugalSW - 3600*24,
+				max: maxtimePortugalSW,
+				value: maxtimePortugalSW,
+			        step: 600,
+			        slide: function (event, ui) {
+					var myDate = new Date( ui.value *1000);
+					document.getElementById('basemapslidertext').innerHTML = 'Change Date / Time Here' + '<br />'  + myDate.toGMTString();
+					//$('#hidden_image').css("background-image",mapDirPortugalSW + ui.value + ".png)");
+					//var tmp
+					//tmp = ui.value - 600;
+					//$('#hidden_image').css("background-image",mapDirPortugalSW + tmp + ".png)");
+					/*console.log(tmp);
+					tmp = tmp - 600;
+					$('#hidden_image').css("background-image","url(maps/Portugal/" + tmp + ".png)");
+					console.log(tmp);
+					tmp = tmp - 600;
+					$('#hidden_image').css("background-image","url(maps/Portugal/" + tmp + ".png)");
+					console.log(tmp);*/
+					//mapX.removeLayer(imageLayer_PortugalSW);
+					var noise_mapPortugalSW = mapDirPortugalSW + ui.value + ".png";
+					//var noise_mapPortugalSW = mapDirPortugalSW + ui.value +	".svg";
+					var noise_mapPelagosFrance = mapDirPelagosFrance + ui.value + ".png";
+					var noise_mapTheChannel = mapDirTheChannel + ui.value + ".png";
+					var noise_mapSpain = mapDirSpain + ui.value + ".png";
+					var noise_mapLaManche = mapDirLaManche + ui.value + ".png";
+					//imageLayer_PortugalSW.setUrl(noise_mapPortugalSW);
+					//imageLayer_PortugalSW._url = noise_mapPortugalSW;
+					//imageLayer_PortugalSW._initImage();
+					//imageLayer_PortugalSW._reset();
+			                //mapX.addLayer(imageLayer_PortugalSW);
+					layersControl.removeLayer(shipLayer);
+
+					mapX.removeLayer(shipLayer);
+					shipLayer = new L.GeoJSON();
+
+					function addshipL() {
+						mapX.addLayer(shipLayer);
+					}
+					/*
+					$.ajax({
+						async: false,  // this is sync so to wait for request to complete
+						type: 'GET',
+						url: 'http://www.shippingnoise.com/maps/test/get_shipPOS_json.php?ts='+ui.value,
+						dataType: 'json',
+						contentType: 'application/json; charset=utf-8',
+						success: function (result) {
+							shipLayer.addGeoJSON(result);
+							mapX.addLayer(shipLayer);
+							layersControl.addOverlay(shipLayer, "AIS Ship Info");
+						},
+						error: function (req, status, error) {
+						}
+					});
+					*/
+
+        			},  /* end slide: */
+        			change: function (event, ui) {
+					var myDate = new Date( ui.value * 1000);
+					document.getElementById('basemapslidertext').innerHTML = 'Change Date / Time Here' + '<br />'  + myDate.toGMTString();
+					//mapX.removeLayer(imageLayer_PortugalSW);
+					var noise_mapPortugalSW = mapDirPortugalSW + ui.value + ".png";
+					//var noise_mapPortugalSW = mapDirPortugalSW + ui.value + ".svg";
+					var noise_mapPelagosFrance = mapDirPelagosFrance + ui.value + ".png";
+					var noise_mapTheChannel = mapDirTheChannel + ui.value + ".png";
+					var noise_mapSpain = mapDirSpain + ui.value + ".png";
+					var noise_mapLaManche = mapDirLaManche + ui.value + ".png";
+					//imageLayer_PortugalSW._url = noise_mapPortugalSW;
+					//imageLayer_PortugalSW._initImage();
+					imageLayer_PortugalSW.setUrl(noise_mapPortugalSW);
+					/* imageLayer_PelagosFrance.setUrl(noise_mapPelagosFrance); */
+					imageLayer_TheChannel.setUrl(noise_mapTheChannel);
+					imageLayer_Spain.setUrl(noise_mapSpain);
+					imageLayer_LaManche.setUrl(noise_mapLaManche);
+			                //mapX.addLayer(imageLayer_PortugalSW);
+					layersControl.removeLayer(shipLayer);
+					mapX.removeLayer(shipLayer);
+					shipLayer = new L.GeoJSON();
+					function addshipL() {
+						mapX.addLayer(shipLayer);
+					}
+					/*
+					$.ajax({
+						async: false,  // this is sync so to wait for request to complete
+						type: 'GET',
+						url: 'http://www.shippingnoise.com/maps/test/get_shipPOS_json.php?ts='+ui.value,
+						dataType: 'json',
+						contentType: 'application/json; charset=utf-8',
+						success: function (result) {
+							shipLayer.addGeoJSON(result);
+							mapX.addLayer(shipLayer);
+							layersControl.addOverlay(shipLayer, "AIS Ship Info");
+						},
+						error: function (req, status, error) {
+						}
+					});
+					*/
+        			}
+			});
+
+			//$("#basemapslider").slider("option", 'value', maxtime - 600);
+			$("#zoomslider").slider({
+		        	animate: true,
+			        orientation: "vertical",
+			        value: 12,
+			        min: 0,
+			        max: 20,
+			        step: 1,
+			        slide: function (event, ui) {
+				        mapX.setZoom(ui.value);
+				}
+			});			
+		});  /* end of $(document).ready(function () */
+	</script>
+	<script type="text/javascript">
+		function onLoad() {
+			var h = document.documentElement.clientHeight;
+			var w = pageWidth();
+			//$(".size").css('height', h - 61 );
+			//$("#map").css('width', w - 198 );
+			$("#mappy").css('height', h - 70 );
+			$("#mappy2").css('height', h - 70 );
+			//$("#mappy2").css('width', w); // ???
+			//$("#mapSTATp95ISTICSp95").css('width', w); // ???
+			$("#map").css('height', h - 70 );
+			$("#mapSTATISTICSp05").css('height', h - 70 );
+			$("#mapSTATISTICSp95").css('height', h - 70 );
+			$("#mapSTATISTICSSEL7").css('height', h - 70 );
+			//curheight = h;
+			mapX.invalidateSize();
+			mapSTATp05.invalidateSize();
+			mapSTATp95.invalidateSize();
+			mapSTATSEL7.invalidateSize();
+			//map.panTo(center);
+
+			//console.log(h)
+			//alert(h);
+			
+			if(h>760) {
+				// PortugalSW
+				//mapX.setView(new L.LatLng(37.90, -8.8), 8);
+				//mapX.setView(new L.LatLng(40, 0), 6);
+				mapX.setView(new L.LatLng(45, 0), 5);
+				mapSTATp05.setView(new L.LatLng(37.90, -8.8), 8);
+				mapSTATp95.setView(new L.LatLng(37.90, -8.8), 8);
+				mapSTATSEL7.setView(new L.LatLng(37.90, -8.8), 8);
+			} else if(h<650) {
+				//alert(h);
+				$("#colorbar img").css('height', h-260);
+			} else {
+				// PortugalSW
+				//mapX.setView(new L.LatLng(37.50, -8.8), 7);
+				//mapX.setView(new L.LatLng(40, 0), 6);
+				mapX.setView(new L.LatLng(45, 0), 5);
+				mapSTATp05.setView(new L.LatLng(37.50, -8.8), 7);
+				mapSTATp95.setView(new L.LatLng(37.50, -8.8), 7);
+				mapSTATSEL7.setView(new L.LatLng(37.50, -8.8), 7);
+			}
+		
+		   	mapX.on('zoomend', function (e) {
+            			$("#zoomslider").slider("value", mapX.getZoom());
+			});
+
+			/*
+			window.setInterval(function() {
+				$("#basemapslider").slider("option", 'value', 0);
+				//alert('test');
+			}, 10000);
+			*/ 
+			$(function() {
+		$( "#tabs" ).tabs({
+			//  activate: function (event, ui) { - for JQuery-UI  1.10.x and JQuery UI 1.9.x
+			show: function (event, ui) { // show for JQuery-UI 1.9.x and below
+				//alert('12345');
+				var $activeTab = $('#tabs').tabs('option', 'active');
+				//if ($activeTab == 99) {
+				//	alert($activeTab);
+				//	mapSTATp95.setView(new L.LatLng(37.90, -8.8), 7);
+				//}
+			}
+			//ajaxOptions: {
+			//	error: function( xhr, status, index, anchor ) {
+			//		$( anchor.hash ).html(
+			//			"Couldn't load this tab. We'll try to fix this as soon as possible. " );
+			//	}
+			//}
+		});
+			});
+		//('ul.tabs_framed').data('tabs').onClick(function(e,index)
+		//{
+		    //resizeMap(" . 'map'.$map_id .") 
+		//    alert('1234');
+		//});
+		//$("body").on('shown','#tabs-2', function() { 
+		//	alert('1234');
+			//L.Util.requestAnimFrame(map.invalidateSize,map,!1,map._container);
+		//});		
+
+
+		}
+
+		function FormatNumberLength(num, length) {
+			var r = "" + num;
+			while (r.length < length) {
+		        	r = "0" + r;
+	                }
+        	        return r;
+	        }
+	</script>
+</body>
+</html>
