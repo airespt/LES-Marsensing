@@ -20,6 +20,21 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		//$this->load->database();
+        //$query = $this->db->get("barcos");
+        $this->load->model('BD_model');
+        $query = $this->BD_model->getFrames();
+        foreach ($query as $row)
+        {
+            echo 'url-> ';
+            echo $row->url;
+            echo ' Zona-> ';
+            echo $row->NomeZona;
+            echo ' Coordenadas-> ';
+            echo $row->Coordenadas_Canto_inferior;
+            echo '<br />';
+            
+        }
+        $this->load->view('welcome_message');
 	}
 }
