@@ -9,19 +9,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- Load Leaflet from CDN-->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
 
-    <!-- Load Esri Leaflet from CDN -->
-    <script src="https://unpkg.com/esri-leaflet@2.0.4/dist/esri-leaflet.js"></script>
 <style>
     #mapid {height:700px;  z-index: 1; overflow:hidden !important}
-</style>			
+</style>
 </head>
 
 <body>
-	
+
 	<!-- Top BAR -->
 	<div class="w3-bar w3-blue w3-card-4">
 		<div class="w3-container">
@@ -55,25 +50,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				  <a href="#" class="w3-bar-item w3-button ">Stats p95</a>
 				  <a href="#" class="w3-bar-item w3-button ">Stats SEL7</a>
 				  </div>
-				
-				<!-- Player -->	
+
+				<!-- Player -->
 				<h4 class="w3-bar-item w3-card-4 w3-leftbar w3-border-khaki" style="text-shadow:3px 1px 0 #044;">Player</h4>
-			
+
 				<div class="w3-container w3-bar w3-card-4">
 					<form action="/action_page.php">
 							<!--Enter a date after 1980-01-01:--><br>
 							<input type="date" name="inicio" min="2000-01-02">&nbsp;Start<br><br>
 							<!--Enter a date after 2000-01-01:<br-->
 							<input type="date" name="fim" min="2017-03-02">&nbsp;End<br><br>
-							<!-- input type="submit"--> 
+							<!-- input type="submit"-->
 					</form>
-					
+
 					<button class="w3-btn w3-teal w3-round-large "><i class="fa fa-play" style="font-size:14px;"></i></button>
 					<button class="w3-btn w3-orange w3-text-white w3-round-large"><i class="fa fa-pause" style="font-size:14px;"></i></button>
 					<button class="w3-btn w3-red w3-round-large"><i class="fa fa-stop" style="font-size:14px;"></i></button>
 					<br><br>
 				</div>
-				
+
 				<!-- Context info -->
 				<h4 class="w3-bar-item w3-card-4 w3-leftbar w3-border-light-grey" style="text-shadow:3px 1px 0 #044;">Context Info</h4>
 				<div class="w3-bar-item">
@@ -83,18 +78,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			<!-- Page Content -->
 			<div style="margin-left:240px; overflow:hidden !important">   <!--class="w3-container" -->
-				<div id="mapid"></div>
-                <script>
-                    var map = L.map('mapid', {
-                        center: [37.75, -122.23],
-                        zoom: 13
-                    });
-                    var esriStreets = L.esri.basemapLayer('Streets').addTo(map);
-                    if(map.resize() == true){
-                        esriStreets.invalidateSize(true);
-                    }
-                </script>
-
+				<div id="mapid">
+                    <!-- LeafLet map is loaded in mainController from views/javascripts/leafLetJS -->
+                </div>
             </div>
         <footer>
 
@@ -107,6 +93,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             </div>
         </footer>
-	  
+
 </body>
 </html>

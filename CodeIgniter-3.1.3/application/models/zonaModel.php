@@ -1,6 +1,5 @@
-<?php 
-
-    class BD_model extends CI_Model {
+<?php
+    class zonaModel extends CI_Model {
         function __construct() { 
          parent::__construct(); 
       }
