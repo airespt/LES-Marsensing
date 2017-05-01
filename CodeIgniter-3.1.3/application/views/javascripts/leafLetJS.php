@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-/**
- * Created by PhpStorm.
+<!--
+/** Created by PhpStorm.
  * User: Aires
  * Date: 29-04-2017
  * Time: 23:46
@@ -13,20 +13,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  * Requires field 'layersJson' from zonaModel describing one or more zonas for each of the four noiseLayers
  *  defaults to first layer found.
  */
-<head>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"
-      integrity="sha512-07I2e+7D8p6he1SIM+1twR5TIrhUQn9+I6yjqD53JQjFiMf8EtC93ty0/5vJTZGF8aAocvHYNEDJajGdNx1IsQ=="
-      crossorigin=""/>
-</head>';
+-->
 
 
-<script language="javascript" type="text/javascript">
-src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js";
-src="https://unpkg.com/esri-leaflet@2.0.4/dist/esri-leaflet.js";
+<script language="javascript" type="text/javascript"
+        src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
+        integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
+        crossorigin="">
 
-var myMap = L.map("mapid").setView([39.505, 7.09], 10);
-
+var myMap = L.map("mapid").setView({center: [39.505, 7.09],zoom: 10});
+var esriStreets = L.esri.basemapLayer('Streets').addTo(myMap);
+if(myMap.resize() == true) {
+    esriStreets.invalidateSize(true);
+}
 var layersJson = {layersJson};
+console.log(layersJson);
 
 var currLayerGp = null;
 var layerGpArray = Array();
