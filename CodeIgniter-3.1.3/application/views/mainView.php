@@ -45,10 +45,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				  <!-- Menu -->
 				  <div class="w3-card-4">
 				  <h4 class="w3-bar-item w3-card-4 w3-leftbar w3-border-white" style="text-shadow:3px 1px 0 #044;">Layers</h4>
-				  <a href="#" class="w3-bar-item w3-button">Noise Map</a>
-				  <a href="#" class="w3-bar-item w3-button ">Stats p05</a>
-				  <a href="#" class="w3-bar-item w3-button ">Stats p95</a>
-				  <a href="#" class="w3-bar-item w3-button ">Stats SEL7</a>
+				  <a class="w3-bar-item w3-button" id="noiseMap">Noise Map</a>
+				  <a class="w3-bar-item w3-button" id="p05">Stats p05</a>
+				  <a class="w3-bar-item w3-button" id="p95">Stats p95</a>
+				  <a class="w3-bar-item w3-button" id="SEL7">Stats SEL7</a>
 				  </div>
 
 				<!-- Player -->

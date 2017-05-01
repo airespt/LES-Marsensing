@@ -14,37 +14,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *  defaults to first layer found.
  */
 -->
+<head>
+    <!-- Load Leaflet from CDN-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" >
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 
+    <!-- Load Esri Leaflet from CDN -->
+    <script src="https://unpkg.com/esri-leaflet@2.0.4/dist/esri-leaflet.js"></script>
+</head>
 
-<script language="javascript" type="text/javascript"
-        src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"
-        integrity="sha512-A7vV8IFfih/D732iSSKi20u/ooOfj/AGehOKq0f4vLT1Zr2Y+RX7C+w8A1gaSasGtRUZpF/NZgzSAu4/Gc41Lg=="
-        crossorigin="">
+<script language="javascript" type="text/javascript">
 
-var myMap = L.map("mapid").setView({center: [39.505, 7.09],zoom: 10});
+var myMap = L.map("mapid").setView([37, -9], 8);
 var esriStreets = L.esri.basemapLayer('Streets').addTo(myMap);
-if(myMap.resize() == true) {
-    esriStreets.invalidateSize(true);
-}
-var layersJson = {layersJson};
-console.log(layersJson);
 
-var currLayerGp = null;
-var layerGpArray = Array();
-for(var layer in layersJson) {
-    var layerGp = new L.layerGroup();
-    for(var zona in layer) {
-        layerGp.addLayer(new L.ImageOverlay( zona["url"], zona["bounds"], {zIndex:99}));
-    }
-    layerGpArray.Add(layerGp);
+var layersJson = JSON.parse('{layersJson}');
 
-    if( currLayerGp === null ) { // enable first as currentLayer
-        layerGp.addTo(myMap);
-        currLayerGp = layerGp;
+addLayer("map");
+
+function addLayer(tipo)
+{
+    myMap.eachLayer(function(layer){
+//        console.log(layer);
+        if(layer.pane == 'overlayPane')
+            myMap.removeLayer(layer);
+    });
+
+    for (var l in layersJson) {
+        if (layersJson[l]["tipo"] == tipo)
+            myMap.addLayer(new L.ImageOverlay(layersJson[l]["url"], JSON.parse(layersJson[l]["bounds"]), {zIndex: 99}));
     }
 }
 
 // layer button handlers
-// TODO
+document.getElementById("noiseMap").onclick = function() { addLayer("map") };
+document.getElementById("p05").onclick = function() { addLayer("p05") };
+document.getElementById("p95").onclick = function() { addLayer("p95") };
+document.getElementById("SEL7").onclick = function() { addLayer("sel7") };
+
+
 
 </script>
