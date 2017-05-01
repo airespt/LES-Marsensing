@@ -13,8 +13,8 @@ class Main extends CI_Controller {
     {
         $this->load->model('zonaModel');
         $zonas = $this->zonaModel->getFrames();
-      print_r(json_encode($zonas));
+//      print_r(json_encode($zonas));
         $this->load->view('mainView');
- //       $this->parser->parse('javascripts/leafLetJS', array('layersJson' => json_encode($zonas)));
+        $this->parser->parse('javascripts/leafLetJS', array('layersJson' => json_encode($zonas)));
     }
 }
