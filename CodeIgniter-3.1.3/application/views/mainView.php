@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 <style>
-    #mapid {height:700px;  z-index: 1; overflow:hidden !important}
+    #mapid {height:700px;  z-index: 1; width=100%; overflow:hidden !important}
 </style>
 </head>
 
@@ -39,9 +39,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		-->
 		</div>
 	</div>
-
+            <div class="w3-cell-row">
+                <div class="w3-col s2">
 			<!-- Sidebar -->
-			<div class="w3-sidebar w3-indigo w3-bar-block w3-small" style="width:240px; padding-bottom:100px; z-index: 2; ">
+			<div class="w3-container w3-indigo w3-bar-block w3-card-2 w3-small" style="width:275px; padding-bottom:100px; z-index: 2; ">
 				  <!-- Menu -->
 				  <div class="w3-card-4">
 				  <h4 class="w3-bar-item w3-card-4 w3-leftbar w3-border-white" style="text-shadow:3px 1px 0 #044;">Layers</h4>
@@ -75,17 +76,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<p>Re-béu-béu pardais ao ninho</p>
 				</div>
 			</div>
-
+            </div>
 			<!-- Page Content -->
-			<div style="margin-left:240px; overflow:hidden !important">   <!--class="w3-container" -->
+			 <div class="w3-col s10">  <!--class="w3-container" -->
 				<div id="mapid"></div>
                 <!-- LeafLet map is loaded in mainController from views/javascripts/leafLetJS -->
             </div>
 
 
         <footer>
-            <div class="w3-bottom  w3-card-4" style="margin-left:240px">
-                <div class="w3-bar  w3-blue w3-center w3-small" style="width:87%">
+            <div class="w3-bottom  w3-card-4">
+                <div class="w3-bar  w3-blue w3-center w3-small" style="width:100%">
                     &copy;2011-2015&nbsp;<a href="http://www.marsensing.com" title="MarSensing Lda">MarSensing
                         Lda</a>, sponsored by <a href="http://www.cintal.ualg.pt"
                                                  title="CINTAL">CINTAL</a> - University of the Algarve (<a
