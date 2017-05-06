@@ -103,18 +103,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			 <div class="w3-col s10">  <!--class="w3-container" -->
 				<div id="mapid"></div>
                 <!-- LeafLet map is loaded in mainController from views/javascripts/leafLetJS -->
-                 <div id="basemaps-wrapper" class="leaflet-bar">
-                     <select name="basemaps" id="basemaps" onChange="changeBasemap(basemaps)">
-                         <option value="Topographic">Topographic</option>
-                         <option value="Streets">Streets</option>
-                         <option value="NationalGeographic">National Geographic</option>
-                         <option value="Oceans">Oceans</option>
-                         <option value="Gray">Gray</option>
-                         <option value="DarkGray">Dark Gray</option>
-                         <option value="Imagery">Imagery</option>
-                         <option value="ShadedRelief">Shaded Relief</option>
-                     </select>
-                 </div>
+
             </div>
 
 
