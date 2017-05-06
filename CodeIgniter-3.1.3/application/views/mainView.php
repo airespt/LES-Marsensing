@@ -12,12 +12,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 <style>
-    #mapid {margin-left:45px; height: 600px; z-index: 1; width=100%-275px; overflow:hidden !important}
+    #mapid {margin-left:45px; height: 600px; z-index: 1; width=100%; overflow:hidden !important}
 	#id01 {
-			position: absolute;
-			max-width:device-width;
-			max-height: 100%;
 			padding: 50px;
+			
+			}
+	
+	#id02 {
+			background-color: #eee;
+			height: calc(100vh - 200px);
+			overflow-x: hidden;
+			overflow-y: scroll;
 			
 			}
 </style>
@@ -40,13 +45,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<!-- FAQ MODAL -->
 						<button onclick="document.getElementById('id01').style.display='block'" class="w3-right w3-btn w3-red w3-round-large" >FAQ</button></div>
 						<div id="id01" class="w3-modal">
-							<div class="w3-modal-content w3-animate-top w3-card-4">
+							<div  class="w3-modal-content w3-animate-top w3-card-4">
 								<header class="w3-container w3-blue"> 
 									<span onclick="document.getElementById('id01').style.display='none'" 
 										class="w3-btn w3-red w3-round w3-display-topright" style="font-size:16px; text-shadow:2px 1px 0 #444;">&times;</span>
 									 <h3 class="w3-center" style="text-shadow:2px 1px 0 #444;">Frequently Asked Questions</h3>
 								</header>
-								<div class="w3-container w3-text-black">
+								<div id="id02" class="w3-container w3-text-black">
 									<p>Some text..</p><p>Some text..</p><p>Some text..</p><p>Some text..</p><p>Some text..</p>
 									<p>Some text..</p><p>Some text..</p><p>Some text..</p><p>Some text..</p><p>Some text..</p>
 									<p>Some text..</p><p>Some text..</p><p>Some text..</p><p>Some text..</p><p>Some text..</p>
