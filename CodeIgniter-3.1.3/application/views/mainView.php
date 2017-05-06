@@ -4,16 +4,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 <html>
 <head>
-<title>Shipping Noise</title>
- <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Shipping Noise</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
 
-
-<style>
-    #mapid {height:700px;  z-index: 1; width=100%; overflow:hidden !important}
-</style>
+    <style>
+        #mapid {height:700px;  z-index: 1; width=100%; overflow:hidden !important}
+    </style>
 </head>
 
 <body>
@@ -81,6 +81,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			 <div class="w3-col s10">  <!--class="w3-container" -->
 				<div id="mapid"></div>
                 <!-- LeafLet map is loaded in mainController from views/javascripts/leafLetJS -->
+                 <div id="basemaps-wrapper" class="leaflet-bar">
+                     <select name="basemaps" id="basemaps" onChange="changeBasemap(basemaps)">
+                         <option value="Topographic">Topographic</option>
+                         <option value="Streets">Streets</option>
+                         <option value="NationalGeographic">National Geographic</option>
+                         <option value="Oceans">Oceans</option>
+                         <option value="Gray">Gray</option>
+                         <option value="DarkGray">Dark Gray</option>
+                         <option value="Imagery">Imagery</option>
+                         <option value="ShadedRelief">Shaded Relief</option>
+                     </select>
+                 </div>
             </div>
 
 

@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 
     <!-- Load Esri Leaflet from CDN -->
-    <script src="https://unpkg.com/esri-leaflet@2.0.4/dist/esri-leaflet.js"></script>
+    <script src="https://unpkg.com/esri-leaflet@2.0.8/dist/esri-leaflet.js"></script>
 </head>
 
 <script language="javascript" type="text/javascript">
@@ -34,7 +34,7 @@ addLayer("map");
 
 function addLayer(tipo)
 {
-    myMap.eachLayer(function(layer){
+    myMap.eachLayer(function(layer){    // remove all custom layers
 //        console.log(layer);
         if(layer.pane == 'overlayPane')
             myMap.removeLayer(layer);
