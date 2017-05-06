@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <script language="javascript" type="text/javascript">
 
-var myMap = L.map("mapid").setView([37, -9], 8);
+var myMap = L.map("mapid").setView([40, -4], 5);
 var esriStreets = L.esri.basemapLayer('Streets').addTo(myMap);
 
 var layersJson = JSON.parse('{layersJson}');
