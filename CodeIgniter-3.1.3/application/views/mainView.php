@@ -9,30 +9,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
 
-<<<<<<< HEAD
+
     <style>
         #mapid {height:700px;  z-index: 1; width=100%; overflow:hidden !important}
     </style>
-=======
 
-<style>
-    #mapid {margin-left:45px; height: 600px; z-index: 1; width=100%; overflow:hidden !important}
-	#id01 {
-			padding: 50px;
-			
-			}
-	
-	#id02 {
-			background-color: #eee;
-			height: calc(100vh - 200px);
-			overflow-x: hidden;
-			overflow-y: scroll;
-			
-			}
-</style>
->>>>>>> a5cd83070d73bd702c570d121e8e7b3ab73288b4
+
+    <style>
+    <!-- ???    #mapid {margin-left:45px; height: 600px; z-index: 1; width=100%; overflow:hidden !important} -->
+        #id01 {
+            padding: 50px;
+        }
+        #id02 {
+            background-color: #eee;
+            height: calc(100vh - 200px);
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+    </style>
+
 </head>
 
 <body>
