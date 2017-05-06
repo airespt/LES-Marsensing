@@ -29,8 +29,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="w3-center" style="font-size:24px; padding-top:10px; text-shadow:2px 1px 0 #444;">Underwater Acoustic Map (&beta;)</div>
                 </div>
                 <div class="w3-third w3-container w3-cell w3-cell-middle">
-                    <div style="padding-top:15px; text-shadow:2px 1px 0 #444"><button class="w3-right w3-btn w3-red w3-round-large" >FAQ</button></div>
-                </div>
+                    <div style="padding-top:15px; text-shadow:2px 1px 0 #444">
+				<!-- FAQ MODAL -->
+						<button onclick="document.getElementById('id01').style.display='block'" class="w3-right w3-btn w3-red w3-round-large" >FAQ</button></div>
+						<div id="id01" class="w3-modal">
+							<div class="w3-modal-content w3-animate-top w3-card-4">
+								<header class="w3-container w3-blue"> 
+									<span onclick="document.getElementById('id01').style.display='none'" 
+										class="w3-btn w3-red w3-round w3-display-topright" style="font-size:16px; text-shadow:2px 1px 0 #444;">&times;</span>
+									 <h3 class="w3-center" style="text-shadow:2px 1px 0 #444;">Frequently Asked Questions</h3>
+								</header>
+								<div class="w3-container w3-text-black">
+									<p>Some text..</p><p>Some text..</p><p>Some text..</p><p>Some text..</p><p>Some text..</p>
+									<p>Some text..</p><p>Some text..</p><p>Some text..</p><p>Some text..</p><p>Some text..</p>
+									<p>Some text..</p><p>Some text..</p><p>Some text..</p><p>Some text..</p><p>Some text..</p>
+									<p>Some text..</p><p>Some text..</p><p>Some text..</p><p>Some text..</p><p>Some text..</p>
+									<p>Some text..</p><p>Some text..</p><p>Some text..</p><p>Some text..</p><p>Some text..</p>
+								</div>
+								<footer class="w3-container w3-blue">
+									<p>Modal Footer</p>
+								</footer>
+							</div>
+						</div>
+				<!-- END MODAL -->
+				</div>
             </div>
 	<!--
 			<h6><button class="w3-right w3-btn w3-red w3-round-large" style="text-shadow:2px 1px 0 #444">FAQ</button></h6>
