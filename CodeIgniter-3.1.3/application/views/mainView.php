@@ -4,12 +4,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!DOCTYPE html>
 <html>
 <head>
-<title>Shipping Noise</title>
- <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Shipping Noise</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
 
+<<<<<<< HEAD
+    <style>
+        #mapid {height:700px;  z-index: 1; width=100%; overflow:hidden !important}
+    </style>
+=======
 
 <style>
     #mapid {margin-left:45px; height: 600px; z-index: 1; width=100%; overflow:hidden !important}
@@ -26,6 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 			}
 </style>
+>>>>>>> a5cd83070d73bd702c570d121e8e7b3ab73288b4
 </head>
 
 <body>
@@ -115,6 +122,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			 <div class="w3-col s10">  <!--class="w3-container" -->
 				<div id="mapid"></div>
                 <!-- LeafLet map is loaded in mainController from views/javascripts/leafLetJS -->
+
             </div>
 
 
