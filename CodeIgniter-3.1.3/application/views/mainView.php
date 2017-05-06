@@ -12,7 +12,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 <style>
-    #mapid {height:700px;  z-index: 1; width=100%; overflow:hidden !important}
+    #mapid {margin-left:45px; height: 600px; z-index: 1; width=100%-275px; overflow:hidden !important}
+	#id01 {
+			position: absolute;
+			max-width:device-width;
+			max-height: 100%;
+			padding: 50px;
+			
+			}
 </style>
 </head>
 
@@ -64,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="w3-cell-row">
                 <div class="w3-col s2">
 			<!-- Sidebar -->
-			<div class="w3-container w3-indigo w3-bar-block w3-card-2 w3-small" style="width:275px; padding-bottom:100px; z-index: 2; ">
+			<div class="w3-container w3-indigo w3-bar-block w3-card-2 w3-small" style="width:275px; padding-bottom:55px; z-index: 2; ">
 				  <!-- Menu -->
 				  <div class="w3-card-4">
 				  <h4 class="w3-bar-item w3-card-4 w3-leftbar w3-border-white" style="text-shadow:3px 1px 0 #044;">Layers</h4>
@@ -99,7 +106,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</div>
             </div>
-			<!-- Page Content -->
+			<!-- MAP -->
 			 <div class="w3-col s10">  <!--class="w3-container" -->
 				<div id="mapid"></div>
                 <!-- LeafLet map is loaded in mainController from views/javascripts/leafLetJS -->
