@@ -42,14 +42,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 var defaultLayerFundo = "Oceans";
 var listaLayerFundo = ["Oceans", "NationalGeographic", "Topographic", "Terrain", "Streets", "Gray", "DarkGray", "Imagery"]; // http://esri.github.io/esri-leaflet/examples/switching-basemaps.html
 
-var layerGroupFundo = {};   // lista de layer groups da camada de fundo
-for(var i in listaLayerFundo) {
-    var name = listaLayerFundo[i];
-    layerGroupFundo[name] = getLayerGroupFundo(name); // agrupa layerFundo com layerFundoLabels caso existam Labels à parte
-    if( name === defaultLayerFundo )
-        defaultBaseLayer = layerGroupFundo[name];
-}
-
+    var layerGroupFundo = {};   // lista de layer groups da camada de fundo
+    for(var i in listaLayerFundo) {
+        var name = listaLayerFundo[i];
+        layerGroupFundo[name] = getLayerGroupFundo(name); // agrupa layerFundo com layerFundoLabels caso existam Labels à parte
+        if( name === defaultLayerFundo )
+            defaultBaseLayer = layerGroupFundo[name];
+    }
     // generate layerGroup to include Labels layer
     function getLayerGroupFundo(basemap) {
         var baseLayer = L.esri.basemapLayer(name);
@@ -63,21 +62,20 @@ for(var i in listaLayerFundo) {
         }
     }
 
-var leafMap = L.map("mapid", {
-    zoomSnap: 0.1,
-    zoomDelta: 0.2,
-    layers: [defaultBaseLayer]
-}).setView([40, -4], 5);    // init map on defaultLayerFundo
+    var leafMap = L.map("mapid", {
+        zoomSnap: 0.1,
+        zoomDelta: 0.2,
+        layers: [defaultBaseLayer]    // init map on defaultLayerFundo
+    }).setView([40, -4], 5);        // posicao e zoom inicial
 
-L.control.layers(layerGroupFundo).addTo(leafMap);   // http://leafletjs.com/examples/layers-control/
+    L.control.layers(layerGroupFundo).addTo(leafMap);   // http://leafletjs.com/examples/layers-control/
 
 
-// para remover na US8 RF9
-var layersJson = JSON.parse('{layersJson}');
+// para ser preenchida pelo refreshJS quando recebe dados atualizados
+var layersJson; // = JSON.parse('{layersJson}');
+var currCustomLayer = 'map'; // global do current customlayer. possui o tipo 'map/p05/p95/sel7'. mais tarde, talvez definir mais tipos para o player e comparador
 
-var currCustomLayer = ''; // global do current customlayer. possui o tipo 'map/p05/p95/sel7'. mais tarde, talvez definir mais tipos para o player e comparador
-setCustomLayer("map"); // select noiseMap
-
+    // Esta é chamada pelo refreshJS
     function setCustomLayer(tipo)
     {
         leafMap.eachLayer(function(lay){    // remove all custom layers
