@@ -12,7 +12,7 @@ class Main extends CI_Controller {
     public function index()
     {
         $this->load->view('mainView');
-        $this->parser->parse('javascripts/leafLetJS');
-        $this->parser->parse('javascripts/refreshJS');
+        $this->load->view('javascripts/leafLetJS');
+        $this->load->view('javascripts/refreshJS');
     }
 }

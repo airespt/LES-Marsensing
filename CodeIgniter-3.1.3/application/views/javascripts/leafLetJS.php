@@ -78,6 +78,7 @@ var currCustomLayer = 'map'; // global do current customlayer. possui o tipo 'ma
     // Esta é chamada pelo refreshJS
     function setCustomLayer(tipo)
     {
+        console.log("setCustomLayer:"+ tipo);
         leafMap.eachLayer(function(lay){    // remove all custom layers
             if( lay.pane === 'overlayPane' )
                 leafMap.removeLayer(lay);

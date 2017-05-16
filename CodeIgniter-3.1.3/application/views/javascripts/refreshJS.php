@@ -11,45 +11,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 -->
 <head>
-    
 </head>
 
 <script language="javascript" type="text/javascript">
-
-//layersJson = JSON.parse('{layersJson}');
-//setCustomLayer(currCustomLayer);
-var layersJson="";
 var lastDate = "";
-var s ="ola";
 var refreshTimer;// timer object
 var xhttp = new XMLHttpRequest();
+
+enableTimer(true);
+
 xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      responseJSON = JSON.parse(this.responseText);
-      
-      //s = this.responseText;
-      var correntDate = responseJSON['datahora']
-      if (lastDate!=responseJSON['datahora']){
+    if (this.readyState === 4 && this.status === 200) {
+        responseJSON = JSON.parse(this.responseText);
+
+        if (lastDate !== responseJSON['datahora']){
             lastDate = responseJSON['datahora'];
             layersJson = responseJSON['camadas'];
-            //setCustomLayer(currCustomLayer);
-            //alert();
-            //console.log("ola");
-      }
-      console.log(responseJSON);
-      
+            setCustomLayer(currCustomLayer);
+        }
     }
-  };
+};
 
 function updateJson(){
-        var url= "http://localhost/cod3/index.php/Respondao/";
-        if(lastDate!="")
+//      console.log("<?php echo base_url(); ?>");
+        var url = '<?php echo base_url();?>' +"Respondao/";
+        if(lastDate !== "")
             url += "?dt=" + lastDate;
         xhttp.open("GET", url, true);
-        xhttp.send();      
+        xhttp.send();
 }
-
-
 
 function myTimer() {
     updateJson();
@@ -57,14 +47,12 @@ function myTimer() {
 }
 
 function enableTimer(isEnable){
-    if(isEnable==true)
+    if(isEnable==true) {
         refreshTimer = setInterval(myTimer, 60000); // um minuto de intrevalo
+        myTimer();
+    }
     else
         clearTimeout(refreshTimer);
 }
-
-updateJson();
-enableTimer(true);
-
 
 </script>
