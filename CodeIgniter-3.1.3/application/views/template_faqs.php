@@ -1,6 +1,6 @@
-<div class="perg">
+<h3>
     {pergunta}
-</div>
-<div class="resp">
+</h3>
+<p>
     {resposta}
-</div>
+</p>

@@ -14,5 +14,6 @@ class Main extends CI_Controller {
         $this->load->view('mainView');
         $this->load->view('javascripts/leafLetJS');
         $this->load->view('javascripts/refreshJS');
+        $this->load->view('javascripts/faqsJS');
     }
 }
