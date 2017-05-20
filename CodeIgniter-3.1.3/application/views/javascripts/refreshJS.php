@@ -13,15 +13,15 @@
 
 <script language="javascript" type="text/javascript">
 var lastDate = "";
+var refreshEnable=false;
 var refreshTimer;// timer object
 var xhttp = new XMLHttpRequest();
 
-enableTimer(true);
 
 xhttp.onreadystatechange = function() {
     if (this.readyState === 4 && this.status === 200) {
         responseJSON = JSON.parse(this.responseText);
-
+        console.log(responseJSON);
         if (lastDate !== responseJSON['datahora']){
             lastDate = responseJSON['datahora'];
             layersJson = responseJSON['camadas'];
@@ -32,6 +32,7 @@ xhttp.onreadystatechange = function() {
 
 function updateJson(){
 //      console.log("<?php echo base_url(); ?>");
+        console.log("updating json");
         var url = '<?php echo base_url('/Respondao');?>';
         if(lastDate !== "")
             url += "?dt=" + lastDate;
@@ -46,11 +47,22 @@ function myTimer() {
 
 function enableTimer(isEnable){
     if(isEnable==true) {
+        if(refreshEnable==false){
+            refreshEnable=true;
+            console.log("refresh enabled!!!!!!!!!!");
+            lastDate = "";
+        }
+        console.log("aqui + -> " + lastDate);
         refreshTimer = setInterval(myTimer, 60000); // um minuto de intrevalo
+        //console.log(refreshTimer);
         myTimer();
     }
-    else
+    else{
+        console.log("aqui stop!!!");
         clearTimeout(refreshTimer);
+        refreshEnable=false;
+    }
 }
+enableTimer(true);
 
 </script>

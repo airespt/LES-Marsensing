@@ -64,7 +64,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     //evento do botao stop
     //para o player e retoma o refresh do site
     function StopPLayer(){
-        
+        console.log("stop!!");
+        //lastDate = "";
+        Player_init=false;
+        clearTimeout(player_timer);
+        enableTimer(true);
     }
     
     //timer do player
@@ -104,8 +108,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         setCustomLayer(currCustomLayer);
         
     }
-    
-    
-    
   
 </script>
