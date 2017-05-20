@@ -1,6 +1,4 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
+
 <!--
 /** Created by PhpStorm.
  * User: Daniel
@@ -34,7 +32,7 @@ xhttp.onreadystatechange = function() {
 
 function updateJson(){
 //      console.log("<?php echo base_url(); ?>");
-        var url = '<?php echo base_url();?>' +"Respondao/";
+        var url = '<?php echo base_url('/Respondao');?>';
         if(lastDate !== "")
             url += "?dt=" + lastDate;
         xhttp.open("GET", url, true);

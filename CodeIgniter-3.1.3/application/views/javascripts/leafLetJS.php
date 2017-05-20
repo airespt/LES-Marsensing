@@ -41,7 +41,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 var defaultLayerFundo = "Oceans";
 var listaLayerFundo = ["Oceans", "NationalGeographic", "Topographic", "Terrain", "Streets", "Gray", "DarkGray", "Imagery"]; // http://esri.github.io/esri-leaflet/examples/switching-basemaps.html
-
+    var urlImg = '<?php echo base_url() ?>';
+    var p = urlImg.lastIndexOf("/index.php");
+    urlImg = urlImg.substr(0, p) + '/imagens/';
     var layerGroupFundo = {};   // lista de layer groups da camada de fundo
     for(var i in listaLayerFundo) {
         var name = listaLayerFundo[i];
@@ -86,7 +88,7 @@ var currCustomLayer = 'map'; // global do current customlayer. possui o tipo 'ma
 
         for (var l in layersJson) {
             if( layersJson[l]["tipo"] === tipo )
-                leafMap.addLayer(new L.ImageOverlay(layersJson[l]["url"], JSON.parse(layersJson[l]["bounds"]), {zIndex: 99}));
+                leafMap.addLayer(new L.ImageOverlay(urlImg+layersJson[l]["url"], JSON.parse(layersJson[l]["bounds"]), {zIndex: 99}));
         }
         currCustomLayer = tipo;
     }
