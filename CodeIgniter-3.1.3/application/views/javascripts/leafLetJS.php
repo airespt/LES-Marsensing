@@ -41,9 +41,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 var defaultLayerFundo = "Oceans";
 var listaLayerFundo = ["Oceans", "NationalGeographic", "Topographic", "Terrain", "Streets", "Gray", "DarkGray", "Imagery"]; // http://esri.github.io/esri-leaflet/examples/switching-basemaps.html
+
     var urlImg = '<?php echo base_url() ?>';
     var p = urlImg.lastIndexOf("/index.php");
     urlImg = urlImg.substr(0, p) + '/imagens/';
+
     var layerGroupFundo = {};   // lista de layer groups da camada de fundo
     for(var i in listaLayerFundo) {
         var name = listaLayerFundo[i];
@@ -53,7 +55,7 @@ var listaLayerFundo = ["Oceans", "NationalGeographic", "Topographic", "Terrain",
     }
     // generate layerGroup to include Labels layer
     function getLayerGroupFundo(basemap) {
-        var baseLayer = L.esri.basemapLayer(name);
+        var baseLayer = L.esri.basemapLayer(basemap);
         if( basemap === 'Oceans' || basemap === 'Gray' || basemap === 'DarkGray'
          || basemap === 'Imagery' || basemap === 'Terrain' ) {
             baseLayerLabels = L.esri.basemapLayer(basemap + 'Labels');
@@ -70,11 +72,14 @@ var listaLayerFundo = ["Oceans", "NationalGeographic", "Topographic", "Terrain",
         layers: [defaultBaseLayer]    // init map on defaultLayerFundo
     }).setView([40, -4], 5);        // posicao e zoom inicial
 
-    L.control.layers(layerGroupFundo).addTo(leafMap);   // http://leafletjs.com/examples/layers-control/
+
+    var layerControls = L.control.layers(layerGroupFundo).addTo(leafMap);   // http://leafletjs.com/examples/layers-control/
 
 
-// para ser preenchida pelo refreshJS quando recebe dados atualizados
+// para serem preenchidos pelo refreshJS quando recebe dados atualizados
 var layersJson; // = JSON.parse('{layersJson}');
+var barcosJson;
+
 var currCustomLayer = 'map'; // global do current customlayer. possui o tipo 'map/p05/p95/sel7'. mais tarde, talvez definir mais tipos para o player e comparador
 
     // Esta é chamada pelo refreshJS
@@ -93,6 +98,27 @@ var currCustomLayer = 'map'; // global do current customlayer. possui o tipo 'ma
         currCustomLayer = tipo;
     }
 
+    function setBarcosMarkers() {
+        var shipRadius = 5;
+        var shipMarkerOptions = {"radius": shipRadius, "color": '#DD3311', "fill": true, "weight": 5};
+
+        if( shipsLayerGroup !== undefined  )
+            shipsLayerGroup.clearLayers();
+
+        var ships = [];
+        for (var l in barcosJson) {
+//            console.log(barcosJson[l]);
+            ships.push(new L.CircleMarker(JSON.parse(barcosJson[l]["localizacao"]), shipMarkerOptions)
+                            .bindTooltip(barcosJson[l]["Nome"])
+                            .bindPopup('<p>'+ barcosJson[l]["localizacao"] +'</p>'
+                                      +'<p>'+ barcosJson[l]["Velocidade"] +'</p>')
+            );
+        }
+        var shipsLayerGroup = L.layerGroup(ships).addTo(leafMap);
+        if( layerControls !== undefined )
+            layerControls.remove();
+        layerControls = L.control.layers(layerGroupFundo, {"Ships": shipsLayerGroup}).addTo(leafMap);   // http://leafletjs.com/examples/layers-control/
+    }
     // layer button handlers
     document.getElementById("noiseMap").onclick = function() { setCustomLayer("map") };
     document.getElementById("p05").onclick = function() { setCustomLayer("p05") };

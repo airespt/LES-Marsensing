@@ -25,7 +25,9 @@ xhttp.onreadystatechange = function() {
         if (lastDate !== responseJSON['datahora']){
             lastDate = responseJSON['datahora'];
             layersJson = responseJSON['camadas'];
+            barcosJson = responseJSON['barcos'];
             setCustomLayer(currCustomLayer);
+            setBarcosMarkers();
         }
     }
 };
