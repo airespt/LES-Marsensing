@@ -155,10 +155,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<!-- input type="submit"-->
 					</form>
 
-					<button class="w3-btn w3-teal w3-round-large "><i class="fa fa-play" style="font-size:14px;"></i></button>
-					<button class="w3-btn w3-orange w3-text-white w3-round-large"><i class="fa fa-pause" style="font-size:14px;"></i></button>
+					<button class="w3-btn w3-teal w3-round-large " onclick="startPlayer()"><i class="fa fa-play" style="font-size:14px;"></i></button>
+					<button class="w3-btn w3-orange w3-text-white w3-round-large" onclick="StopPlayer()" ><i class="fa fa-pause" style="font-size:14px;"></i></button>
 					<button class="w3-btn w3-red w3-round-large"><i class="fa fa-stop" style="font-size:14px;"></i></button>
 					<br><br>
+                    <input type="range" id="slider1" value="10" min="0" max="100" oninput="jumpFrame()" title=value>
 				</div>
 
 				<!-- Context info -->
