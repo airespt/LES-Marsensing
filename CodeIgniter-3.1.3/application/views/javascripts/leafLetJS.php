@@ -75,7 +75,6 @@ var listaLayerFundo = ["Oceans", "NationalGeographic", "Topographic", "Terrain",
 
     var layerControls = L.control.layers(layerGroupFundo).addTo(leafMap);   // http://leafletjs.com/examples/layers-control/
 
-
 // para serem preenchidos pelo refreshJS quando recebe dados atualizados
 var layersJson; // = JSON.parse('{layersJson}');
 var barcosJson;
@@ -96,16 +95,31 @@ var currCustomLayer = 'map'; // global do current customlayer. possui o tipo 'ma
                 leafMap.addLayer(new L.ImageOverlay(urlImg+layersJson[l]["url"], JSON.parse(layersJson[l]["bounds"]), {zIndex: 99}));
         }
         currCustomLayer = tipo;
+        if( tipo === "map") {
+            setBarcosMarkers();
+
+            if( layerControls !== undefined )
+                layerControls.remove();
+            layerControls = L.control.layers(layerGroupFundo, {"Ships": shipsLayerGroup}).addTo(leafMap);   // http://leafletjs.com/examples/layers-control/
+        }
+        else {
+            removeBarcosMarkers();
+
+            if( layerControls !== undefined )
+                layerControls.remove();
+            layerControls = L.control.layers(layerGroupFundo).addTo(leafMap);   // http://leafletjs.com/examples/layers-control/
+        }
     }
 
+    var shipsLayerGroup; // = L.layerGroup();
+    var ships = [];
     function setBarcosMarkers() {
         var shipRadius = 5;
         var shipMarkerOptions = {"radius": shipRadius, "color": '#DD3311', "fill": true, "weight": 5};
 
-        if( shipsLayerGroup !== undefined  )
-            shipsLayerGroup.clearLayers();
+        if( ships !== [] )
+            removeBarcosMarkers();
 
-        var ships = [];
         for (var l in barcosJson) {
 //            console.log(barcosJson[l]);
             ships.push(new L.CircleMarker(JSON.parse(barcosJson[l]["localizacao"]), shipMarkerOptions)
@@ -114,15 +128,32 @@ var currCustomLayer = 'map'; // global do current customlayer. possui o tipo 'ma
                                       +'<p>'+ barcosJson[l]["Velocidade"] +'</p>')
             );
         }
-        var shipsLayerGroup = L.layerGroup(ships).addTo(leafMap);
-        if( layerControls !== undefined )
-            layerControls.remove();
-        layerControls = L.control.layers(layerGroupFundo, {"Ships": shipsLayerGroup}).addTo(leafMap);   // http://leafletjs.com/examples/layers-control/
+        shipsLayerGroup = L.layerGroup(ships).addTo(leafMap);
     }
+
+    function removeBarcosMarkers() {
+        if( shipsLayerGroup !== undefined ) {
+            shipsLayerGroup.clearLayers();
+            ships = [];
+        }
+    }
+
     // layer button handlers
-    document.getElementById("noiseMap").onclick = function() { setCustomLayer("map") };
-    document.getElementById("p05").onclick = function() { setCustomLayer("p05") };
-    document.getElementById("p95").onclick = function() { setCustomLayer("p95") };
-    document.getElementById("SEL7").onclick = function() { setCustomLayer("sel7") };
+    document.getElementById("noiseMap").onclick = function() {
+        if( currCustomLayer !== 'map')
+            setCustomLayer("map");
+    };
+    document.getElementById("p05").onclick = function() {
+        if( currCustomLayer !== 'p05')
+            setCustomLayer("p05")
+    };
+    document.getElementById("p95").onclick = function() {
+        if( currCustomLayer !== 'p95')
+            setCustomLayer("p95")
+    };
+    document.getElementById("SEL7").onclick = function() {
+        if( currCustomLayer !== 'sel7')
+            setCustomLayer("sel7")
+    };
 
 </script>

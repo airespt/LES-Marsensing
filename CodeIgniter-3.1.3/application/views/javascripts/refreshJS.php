@@ -27,7 +27,6 @@ xhttp.onreadystatechange = function() {
             layersJson = responseJSON['camadas'];
             barcosJson = responseJSON['barcos'];
             setCustomLayer(currCustomLayer);
-            setBarcosMarkers();
         }
     }
 };
