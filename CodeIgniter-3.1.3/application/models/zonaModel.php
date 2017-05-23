@@ -1,10 +1,12 @@
 <?php
     class zonaModel extends CI_Model {
-        function __construct() { 
-         parent::__construct(); 
-      }
+        var $hostURL; // -> localhost://.../CodeIgniter.../imagens
 
-      
+        function __construct() {
+            parent::__construct();
+            $this->hostURL = str_replace('/index.php', '/imagens', base_url());
+        }
+
       private function getMaxTime($date = '2000-01-01 00:00:00'){
           $dt=$this->db->select_max('TimeStamp')
                        ->from('superficie')
@@ -13,7 +15,7 @@
           
           return $dt->result()[0]->TimeStamp;
       }
-      
+
       private function getMinTime($date){
           $dt=$this->db->select_min('TimeStamp')
                        ->from('superficie')
@@ -102,32 +104,25 @@
       
       public function getFrames($date = '2017-01-01 00:00:00'){
           $this->load->database();
-          
-          
-          //$this->db->select('url')->from('superficie');
-          //$this->db->from('superficie');
-          //$this->db->where('superficie.TimeStamp' , '2000-01-01 00:00:00');
-          //$this->db->where('zona.NomeZona ' , 'superficie.Zona');
-          
+
           $time = $this->getMaxTime($date);
-          
-          //echo '<br />';
-          //echo $sql;
-           $query=$this->db->select('superficie.url as url , zona.NomeZona as zona, Zona.Bounds as bounds, superficie.tipo as tipo')
-                           ->from('superficie')
-                           ->join('zona', 'zona.NomeZona = superficie.Zona')
-                           ->where('superficie.TimeStamp', $time) 
-                           ->get();
-                            
-                            
-          
+          $query=$this->db->select('superficie.url as url , zona.NomeZona as zona, Zona.Bounds as bounds, superficie.tipo as tipo')
+                          ->from('superficie')
+                          ->join('zona', 'zona.NomeZona = superficie.Zona')
+                          ->where('superficie.TimeStamp', $time)
+                          ->get();
+
           //echo $this->db->get_compiled_select();
-          
-          //$query = $this->db->get();
-          //echo $this->getMaxTime($date);
           $this->db->close();
-          return $query->result();
-          
+          $result = $query->result();
+
+          foreach($result as $zona) {
+              if( strtolower(substr($zona->url, 0, 4)) !== 'http') {
+                  $zona->url = $this->hostURL . $zona->url;
+              }
+          }
+
+          return $result;
       }
       
       public function getShips($date = '2000-01-01 00:00:00'){
