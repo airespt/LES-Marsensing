@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2017 at 03:28 PM
+-- Generation Time: May 23, 2017 at 03:40 PM
 -- Server version: 10.1.8-MariaDB
 -- PHP Version: 5.6.14
 
@@ -20,14 +20,40 @@ SET time_zone = "+00:00";
 -- Database: `noiseship`
 --
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `embarcaoes_subreficie`
+--
+
+DROP TABLE IF EXISTS `embarcaoes_subreficie`;
+CREATE TABLE `embarcaoes_subreficie` (
+  `ID_barco` int(11) NOT NULL,
+  `IDSubreficie` int(11) NOT NULL,
+  `Velocidade` int(11) DEFAULT NULL,
+  `localizacao` varchar(45) DEFAULT NULL,
+  `idRota` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Dumping data for table `embarcaoes_subreficie`
 --
 
-UPDATE `embarcaoes_subreficie` SET `ID_barco` = 1,`IDSubreficie` = 1,`Velocidade` = 100,`localizacao` = '[37.0, -10.2]',`idRota` = '12' WHERE `embarcaoes_subreficie`.`ID_barco` = 1 AND `embarcaoes_subreficie`.`IDSubreficie` = 1;
-UPDATE `embarcaoes_subreficie` SET `ID_barco` = 2,`IDSubreficie` = 1,`Velocidade` = 111,`localizacao` = '[38.1, -10]',`idRota` = '111' WHERE `embarcaoes_subreficie`.`ID_barco` = 2 AND `embarcaoes_subreficie`.`IDSubreficie` = 1;
-UPDATE `embarcaoes_subreficie` SET `ID_barco` = 3,`IDSubreficie` = 1,`Velocidade` = 111,`localizacao` = '[38.5, -9.7]',`idRota` = '12' WHERE `embarcaoes_subreficie`.`ID_barco` = 3 AND `embarcaoes_subreficie`.`IDSubreficie` = 1;
-UPDATE `embarcaoes_subreficie` SET `ID_barco` = 4,`IDSubreficie` = 1,`Velocidade` = 11,`localizacao` = '[37, -9.5]',`idRota` = '55' WHERE `embarcaoes_subreficie`.`ID_barco` = 4 AND `embarcaoes_subreficie`.`IDSubreficie` = 1;
+INSERT INTO `embarcaoes_subreficie` (`ID_barco`, `IDSubreficie`, `Velocidade`, `localizacao`, `idRota`) VALUES
+(1, 1, 100, '[37.0, -10.2]', '12'),
+(2, 1, 111, '[38.1, -10]', '111'),
+(3, 1, 111, '[38.5, -9.7]', '12'),
+(4, 1, 11, '[37, -9.5]', '55');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `embarcaoes_subreficie`
+--
+ALTER TABLE `embarcaoes_subreficie`
+  ADD PRIMARY KEY (`ID_barco`,`IDSubreficie`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
