@@ -70,8 +70,9 @@ var listaLayerFundo = ["Oceans", "NationalGeographic", "Topographic", "Terrain",
 
 
     var layerControls = L.control.layers(layerGroupFundo).addTo(leafMap);   // http://leafletjs.com/examples/layers-control/
+// *********************************************************************
 
-// para serem preenchidos pelo refreshJS quando recebe dados atualizados
+// para serem preenchidos pelo timer quando recebe dados atualizados
 var layersJson; // = JSON.parse('{layersJson}');
 var barcosJson;
 
@@ -107,7 +108,7 @@ var currCustomLayer = 'map'; // global do current customlayer. possui o tipo 'ma
         }
     }
 
-    var shipsLayerGroup; // = L.layerGroup();
+    var shipsLayerGroup;
     var ships = [];
     function setBarcosMarkers() {
         var shipRadius = 5;
@@ -133,23 +134,55 @@ var currCustomLayer = 'map'; // global do current customlayer. possui o tipo 'ma
             ships = [];
         }
     }
+// *********************************************************************
 
-    // layer button handlers
-    document.getElementById("noiseMap").onclick = function() {
-        if( currCustomLayer !== 'map')
-            setCustomLayer("map");
-    };
-    document.getElementById("p05").onclick = function() {
-        if( currCustomLayer !== 'p05')
-            setCustomLayer("p05")
-    };
-    document.getElementById("p95").onclick = function() {
-        if( currCustomLayer !== 'p95')
-            setCustomLayer("p95")
-    };
-    document.getElementById("SEL7").onclick = function() {
-        if( currCustomLayer !== 'sel7')
-            setCustomLayer("sel7")
-    };
+var lastDate = "";
+var refreshTimerID = 0;// timer object
+var xhttp = new XMLHttpRequest();
+
+xhttp.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+        responseJSON = JSON.parse(this.responseText);
+        console.log(responseJSON);
+        if (lastDate !== responseJSON['datahora']){
+            lastDate = responseJSON['datahora'];
+            layersJson = responseJSON['camadas'];
+            barcosJson = responseJSON['barcos'];
+            setCustomLayer(currCustomLayer);
+        }
+    }
+};
+
+function updateJson(){
+//      console.log("<?php echo base_url(); ?>");
+//    console.log("updating json");
+    var url = '<?php echo base_url('/Respondao');?>';
+    if(lastDate !== "")
+        url += "?dt=" + lastDate;
+    xhttp.open("GET", url, true);
+    xhttp.send();
+}
+
+function startRefreshTimer(){
+    if( refreshTimerID === 0) {
+        console.log("startRefreshTimer");
+        lastDate = "";
+        refreshTimerID = setInterval(updateJson, 60000); // um minuto de intrevalo
+        updateJson();
+    }
+    else {
+        setCustomLayer(currCustomLayer);
+    }
+}
+
+function stopRefreshTimer() {
+    if( refreshTimerID !== 0) {
+        console.log("stopRefreshTimer");
+        clearTimeout(refreshTimerID);
+        refreshTimerID = 0;
+    }
+}
+
+startRefreshTimer(); // entrypoint
 
 </script>
