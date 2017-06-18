@@ -1,13 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-/**
- * Created by PhpStorm.
- * User: Aires
- * Date: 23-05-2017
- * Time: 18:50
- */
-// Contem todos os eventos chamados devido a interacção do utilizador
+
 <script language="javascript" type="text/javascript">
 
 // layer button handlers

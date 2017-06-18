@@ -10,14 +10,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/3/w3.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 
-
+<!--  #mapid {margin-left:45px; height: 600px; z-index: 1; width=100%; overflow:hidden !important} -->
     <style>
-        #mapid {height:700px;  z-index: 1; width=100%; overflow:hidden !important}
+        #mapid {height: calc(100vh - 82px);  z-index: 1; padding-left: 280px; overflow:hidden !important}
     </style>
 
 
     <style>
-    <!-- ???    #mapid {margin-left:45px; height: 600px; z-index: 1; width=100%; overflow:hidden !important} -->
+    
         #id01 {
             padding: 50px;
         }
@@ -27,11 +27,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             overflow-x: hidden;
             overflow-y: scroll;
         }
+		
     </style>
 
 </head>
 
-<body>
+<body class="w3-indigo">
 
 	<!-- Top BAR -->
 	<div class="w3-bar w3-blue w3-card-4">
@@ -121,18 +122,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		-->
 		</div>
 	</div>
-            <div class="w3-cell-row">
-                <div class="w3-col s2">
-			<!-- Sidebar -->
-			<div class="w3-container w3-indigo w3-bar-block w3-card-2 w3-small" style="width:280px; padding-bottom:100px; z-index: 2; ">
+          
+          
+			<!-- SIDEBAR -->
+		
+				<div class="w3-container w3-sidebar w3-indigo w3-bar-block w3-small" style="height: calc(100vh - 100px); width:280px">
 				  <!-- Menu -->
 				  <div class="w3-card-4">
 				  <h4 class="w3-bar-item w3-card-4 w3-leftbar w3-border-white" style="text-shadow:3px 1px 0 #044;">Layers</h4>
-				  <a class="w3-bar-item w3-button" onclick="onClick_noise()">Noise Map</a>
-				  <a class="w3-bar-item w3-button" onclick="onClick_p05()">Stats p05</a>
-				  <a class="w3-bar-item w3-button" onclick="onClick_p95()">Stats p95</a>
-				  <a class="w3-bar-item w3-button" onclick="onClick_sel7()">Stats SEL7</a>
-				  </div>
+				  <button class="w3-bar-item w3-button" onclick="onClick_noise()">Noise Map</button>
+				  <button class="w3-bar-item w3-button" onclick="onClick_p05()">Stats p05</button>
+				  <button class="w3-bar-item w3-button" onclick="onClick_p95()">Stats p95</button>
+				  <button class="w3-bar-item w3-button" onclick="onClick_sel7()">Stats SEL7</button>
+				 </div>
 
 				<!-- Player -->
 				<h4 class="w3-bar-item w3-card-4 w3-leftbar w3-border-khaki" style="text-shadow:3px 1px 0 #044;">Player</h4>
@@ -153,11 +155,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 				<!-- Context info -->
 				<h4 class="w3-bar-item w3-card-4 w3-leftbar w3-border-light-grey" style="text-shadow:3px 1px 0 #044;">Context Info</h4>
-<!--				<div class="w3-bar-item">
+					<!--				<div class="w3-bar-item">
 					<p>Re-béu-béu pardais ao ninho</p>
 				</div> -->
-			</div>
-            </div>
+				</div>
+			
 			<!-- MAP -->
             <div style="padding-left: 280px">
                 <div id="mapid"></div>
