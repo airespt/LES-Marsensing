@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+	<div id="container">
+    	<div id="header">
+		<h1 style="color:#F7F7F7">  ShippingNoise [Admin Panel]  </h1>
+		</div>
+    	<div id="topBar" style="background-color:#dadada;border-bottom:solid 1px #BBB; text-align:right; padding:5px">
+			<!-- BEGIN BLOCK_ADMIN -->
+			Logged in as {IDADM} <a href="logout.php">Logout</a>
+			<!-- END BLOCK_ADMIN -->
+		</div>
+        <div id="menu">
+			<ul>
+				<li><a href="admin.php">Home</a></li>
+				
+			</ul>
+			<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+			<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+		</div>
+        <div id="content">
+			<p><a href="novacat.html">Add a new record</a></p>
+        	<table width="500" border="0" cellpadding="3" cellspacing="3">
+	    <tr>
+           <td width="80" align="center" bgcolor="#CCCCCC"><span class="style9">Id</span></td>
+           <td width="260" align="center" bgcolor="#CCCCCC"><span class="style9">Idioma</span></td>
+           <td width="80" align="center" bgcolor="#CCCCCC"><span class="style9">Editar</span></td>
+           <td width="80" align="center" bgcolor="#CCCCCC"><span class="style9">Remover</span></td>
+        </tr>
+	    <!-- BEGIN BLOCK_CATEGORIAS -->
+        <tr>
+			<td>{IDCAT}</td>
+			<td>{NOME}</td>
+			<td align='center'><a href='editcat.php?id={IDCAT}'>Editar</a></td>
+			<td align='center'><a href='delreg.php?id={IDCAT}&tabela=categorias&chave=id_cat'>Excluir</a></td>
+		</tr>
+		<!-- END BLOCK_CATEGORIAS -->
+		</table>
+        </div>
+        <br style="clear:both" />
+        <div id="footer" style="border-top:dotted 1px #CCC; padding:20px">
+			Copyright All rights reserved
+		</div>
+	</div>
+</body>
+</html>

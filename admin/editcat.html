@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+ <html>
+ <head>
+ <title>Edit Record - Idiomas</title>
+ </head>
+ <body>
+ <h3>Editar idioma</h3>
+ <form action="editcat.php?id={IDCAT}" method="post">
+ 
+ <table>
+ 
+ <!-- BEGIN BLOCK_CATEGORIAS -->
+ <tr>
+ <td>ID: </td><td>{IDCAT}</td>
+ </tr>
+  
+ <tr>
+ <td>Idioma: *</td><td><input type="text" name="nome" value="{NOME}" size="10"></td>
+ </tr>
+ 
+  <!-- END BLOCK_CATEGORIAS -->
+ 
+</table>
+
+ <p>* required</p>
+ <input type="submit" name="submit" value="Submit">
+
+ </form> 
+ </body>
+ </html>

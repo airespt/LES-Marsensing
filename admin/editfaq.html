@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+ <html>
+ <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>Edit Record - Perguntas</title>
+ </head>
+ <body>
+ <h3>Editar perguntas</h3>
+ <form action="editfaq.php?id={IDFAQ}" method="post">
+ 
+ <table>
+ 
+ <!-- BEGIN BLOCK_PERGUNTAS -->
+ <tr>
+ <td>ID: </td><td>{IDFAQ}</td>
+ </tr>
+  
+ <tr>
+ <td>Idioma: *</td><td><input type="text" name="cat_id" value="{CATID}"></td>
+ </tr>
+ 
+ <tr>
+ <td>Pergunta: *</td><td><input type="text" size="150" name="nome" value="{NOME}"></td>
+ </tr>
+ 
+ <tr>
+ <td>Resposta: *</td><td><textarea rows="10" cols="50" maxlength="500" name="descricao">{DESCRICAO}</textarea></td> 
+ </tr>
+ 
+  <!-- END BLOCK_PERGUNTAS -->
+ 
+</table>
+
+ <p>* required</p>
+ <input type="submit" name="submit" value="Submit">
+
+ </form> 
+ </body>
+ </html>

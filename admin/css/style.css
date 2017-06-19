@@ -1,0 +1,42 @@
+body{
+	margin:0;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:12px;
+}
+#container{
+	width:1004px;
+	margin:0px auto;
+	border:solid 1px #CCC;
+	border-top:none;
+}
+h1{
+	font-family:Georgia, "Times New Roman", Times, serif;
+	margin:0px;
+	padding:5px 0px 15px 15px;
+	font-size:22px;
+}
+#header{
+	background-color:#26469B;
+	padding:20px 0px 0px 30px;
+}
+#topBar{
+	background:#F8F8F8;
+}
+#menu{
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:12px;
+	width:180px;
+	margin:0px;
+	padding:20px;
+	border-right:dotted 1px #CCC;
+	float:left;
+}
+#content{
+	float:left;
+	width:742px;
+	padding:20px;
+	padding-bottom:0px;
+}
+#footer{
+	font-size:11px;
+}
