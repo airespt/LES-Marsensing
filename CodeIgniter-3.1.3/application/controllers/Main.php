@@ -16,5 +16,6 @@ class Main extends CI_Controller {
         $this->load->view('javascripts/faqsJS');
         $this->load->view('javascripts/playerJS');
         $this->load->view('javascripts/UIeventsJS');
+        $this->load->view('javascripts/accordionJS');
     }
 }

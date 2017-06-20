@@ -13,11 +13,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <!--  #mapid {margin-left:45px; height: 600px; z-index: 1; width=100%; overflow:hidden !important} -->
     <style>
         #mapid {height: calc(100vh - 82px);  z-index: 1; padding-left: 280px; overflow:hidden !important}
+        #map01_comparator{height: 85vh; z-index: 1;} <!-- TODO!!-->
+        #map02_comparator{height: 85vh; z-index:1; } <!-- TODO!!-->
     </style>
 
 
     <style>
-    
+        #comparator_modal {
+            margin: 0;
+            padding: 0;
+        }
         #id01 {
             padding: 50px;
         }
@@ -27,7 +32,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             overflow-x: hidden;
             overflow-y: scroll;
         }
-		
+        #comparator_modal_body {
+            height: calc(100vh - 82px);
+            min-height: 100%;
+            border-radius: 0;
+        }
+
     </style>
 
 </head>
@@ -113,6 +123,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</div>
 						</div>
 				<!-- END MODAL -->
+
+
+                <!-- Comparator MODAL -->
+                <div id="comparator_modal" class="  w3-modal">
+                    <div  class="w3-modal-content  w3-animate-left w3-card-4">
+                        <header class="w3-container w3-blue">
+                            <span onclick="document.getElementById('comparator_modal').style.display='none'"
+                                  class="w3-btn w3-red w3-round w3-display-topright" style="font-size:16px; text-shadow:2px 1px 0 #444;">&times;</span>
+                            <h3 class="w3-center" style="text-shadow:2px 1px 0 #444;">Comparator</h3>
+                        </header>
+                        <body>
+                            <div id="comparator_modal_body">
+                                <div class=w3-row">
+                                    <div id=map01_comparator class="w3-half w3-text-black">Map#1</div>
+                                    <div id=map02_comparator class="w3-half w3-text-black">Map#2</div>
+                                    <div class="w3-row">
+                                        <div class="w3-half w3-center w3-text-black">
+                                            <div id="time_stamp1">Time_stamp</div>
+                                        </div>
+                                        <div class="w3-half w3-center w3-text-black">
+                                            <div id = "time_stamp2">Time_stamp</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </body>
+                        <footer class="w3-container w3-light-grey">
+
+                        </footer>
+                    </div>
+                </div>
+                <!-- END Comparator MODAL -->
 				</div>
             </div>
 	<!--
@@ -126,7 +168,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           
 			<!-- SIDEBAR -->
 		
-				<div class="w3-container w3-sidebar w3-indigo w3-bar-block w3-small" style="height: calc(100vh - 100px); width:280px">
+				<div class="w3-container w3-sidebar w3-indigo w3-bar-block w3-small" style="position: absolute !important; height: calc(100vh - 100px); width:280px">
 				  <!-- Menu -->
 				  <div class="w3-card-4">
 				  <h4 class="w3-bar-item w3-card-4 w3-leftbar w3-border-white" style="text-shadow:3px 1px 0 #044;">Layers</h4>
@@ -137,22 +179,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				 </div>
 
 				<!-- Player -->
-				<h4 class="w3-bar-item w3-card-4 w3-leftbar w3-border-khaki" style="text-shadow:3px 1px 0 #044;">Player</h4>
+                    <button onclick="accordion('player')" class="w3-bar-item w3-button w3-leftbar w3-card-4  w3-border-khaki" style="margin-top:0.67em; font-size:18px;"">Player </button>
+                    <div id ="player" class=" w3-container w3-hide w3-bar w3-card-4" style="margin-top:0.67em; margin-bottom:0.67em">
+                        <!--Enter a date after 1980-01-01:--><br>
+                        <input type="date" name="inicio" min="2000-01-02">&nbsp;Start<br><br>
+                        <!--Enter a date after 2000-01-01:<br-->
+                        <input type="date" name="fim" min="2017-03-02">&nbsp;End<br><br>
 
-				<div class="w3-container w3-bar w3-card-4">
-                    <!--Enter a date after 1980-01-01:--><br>
-                    <input type="date" name="inicio" min="2000-01-02">&nbsp;Start<br><br>
-                    <!--Enter a date after 2000-01-01:<br-->
-                    <input type="date" name="fim" min="2017-03-02">&nbsp;End<br><br>
 
+                        <button class="w3-btn w3-teal w3-round-large " onclick="startPlayer()"><i class="fa fa-play" style="font-size:14px;"></i></button>
+                        <button class="w3-btn w3-orange w3-text-white w3-round-large" onclick="StopPlayer()" ><i class="fa fa-pause" style="font-size:14px;"></i></button>
+                        <button class="w3-btn w3-red w3-round-large"><i class="fa fa-stop" style="font-size:14px;"></i></button>
+                        <br><br>
+                        <input type="range" id="slider1" value="10" min="0" max="100" oninput="jumpFrame()" title=value>
+				    </div>
 
-					<button class="w3-btn w3-teal w3-round-large " onclick="startPlayer()"><i class="fa fa-play" style="font-size:14px;"></i></button>
-					<button class="w3-btn w3-orange w3-text-white w3-round-large" onclick="StopPlayer()" ><i class="fa fa-pause" style="font-size:14px;"></i></button>
-					<button class="w3-btn w3-red w3-round-large"><i class="fa fa-stop" style="font-size:14px;"></i></button>
-					<br><br>
-                    <input type="range" id="slider1" value="10" min="0" max="100" oninput="jumpFrame()" title=value>
-				</div>
+                    <!-- Comparator -->
 
+                    <button onclick="accordion('comparator')" class="w3-bar-item w3-button w3-leftbar w3-card-4  w3-border-khaki" style="margin-top:0.67em; font-size:18px;"">Comparator </button>
+
+                    <div id ="comparator" class=" w3-container w3-hide w3-bar w3-card-4" style="margin-top:0.67em; margin-bottom:0.67em">
+                        <br>
+                        <select name="types">
+                            <option value="p05">p05</option>
+                            <option value="p95">p95</option>
+                            <option value="SEL7">SEL7</option>
+                        </select><br><br>
+                        <input type="date" name="inicio" min="2000-01-02">&nbsp;Start<br><br>
+                        <!--Enter a date after 2000-01-01:<br-->
+                        <input type="date" name="fim" min="2017-03-02">&nbsp;End<br><br>
+                        <button onclick="document.getElementById('comparator_modal').style.display='block'" class="w3-bar-item w3-button w3-teal w3-round-large">Compare</button>
+                        <br>
+                    </div>
+                    <!-- END Comparator -->
 				<!-- Context info -->
 				<h4 class="w3-bar-item w3-card-4 w3-leftbar w3-border-light-grey" style="text-shadow:3px 1px 0 #044;">Context Info</h4>
 					<!--				<div class="w3-bar-item">
