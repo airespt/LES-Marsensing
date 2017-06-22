@@ -72,7 +72,7 @@ INSERT INTO `categorias` (`id_cat`, `nome`) VALUES
 CREATE TABLE IF NOT EXISTS `perguntas` (
   `id_faq` int(11) NOT NULL AUTO_INCREMENT,
   `cat_id` tinyint(4) NOT NULL,
-  `nome` varchar(150) NOT NULL,
+  `nome` varchar(300) NOT NULL,
   `descricao` text NOT NULL,
   PRIMARY KEY (`id_faq`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;

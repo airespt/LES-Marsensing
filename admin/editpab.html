@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+ <html>
+ <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <title>Edit Record - Perguntas Abertas</title>
+ </head>
+ <body>
+ <h3>Editar perguntas Abertas</h3>
+ <form action="editpab.php?id={IDPA}" method="post">
+ 
+ <table>
+ 
+ <!-- BEGIN BLOCK_PERGUNTAS_A -->
+ <tr>
+ <td>ID: </td><td>{IDPA}</td>
+ </tr>
+  
+ <tr>
+ <td>Idioma: *</td><td><input type="text" name="idioma" value="{IDIOMAPA}"></td>
+ </tr>
+ 
+ <tr>
+ <td>Pergunta: *</td><td><input type="text" size="150" name="pergunta" value="{PERGUNTAPA}"></td>
+ </tr>
+ 
+ <tr>
+ <td>Resposta: *</td><td><textarea rows="10" cols="50" maxlength="500" name="resposta">{RESPOSTAPA}</textarea></td> 
+ </tr>
+ 
+ <tr>
+ <td>FAQ S/N: *</td><td><input type="text" name="faq" value="{FAQPA}"></td> 
+ </tr>
+ 
+  <!-- END BLOCK_PERGUNTAS_A -->
+ 
+</table>
+
+ <p>* required</p>
+ <input type="submit" name="submit" value="Submit">
+
+ </form> 
+ </body>
+ </html>

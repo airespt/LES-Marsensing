@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="css/style.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+	<div id="container">
+    	<div id="header">
+		<h1 style="color:#F7F7F7">  ShippingNoise [Admin Panel]  </h1>
+		</div>
+    	<div id="topBar" style="background-color:#dadada;border-bottom:solid 1px #BBB; text-align:right; padding:5px">
+			<!-- BEGIN BLOCK_ADMIN -->
+			Logged in as {IDADM} <a href="logout.php">Logout</a>
+			<!-- END BLOCK_ADMIN -->
+		</div>
+        <div id="menu">
+			<ul>
+				<li><a href="admin.php">Home</a></li>
+				
+				<!-- BEGIN BLOCK_CATEGORIAS -->
+				<!-- <li><a href='procura.php?id={IDCAT}'>{NOME}</a></li> -->
+				<!-- END BLOCK_CATEGORIAS -->
+							
+			</ul>
+			<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+			<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+        	<p>&nbsp;</p>
+		</div>
+        <div id="content">
+			<!-- <p><a href="novofaq.html">Add a new record</a></p> -->
+        	<table width="500" border="0" cellpadding="3" cellspacing="3">
+	    <tr>
+           <td width="80" align="center" bgcolor="#CCCCCC"><span class="style9">Id</span></td>
+           <td width="260" align="center" bgcolor="#CCCCCC"><span class="style9">Pergunta</span></td>
+		   <td width="80" align="center" bgcolor="#CCCCCC"><span class="style9">Idioma</span></td>
+           <td width="80" align="center" bgcolor="#CCCCCC"><span class="style9">Faq</span></td>
+           <td width="80" align="center" bgcolor="#CCCCCC"><span class="style9">Editar</span></td>
+           <td width="80" align="center" bgcolor="#CCCCCC"><span class="style9">Remover</span></td>
+		   <td width="80" align="center" bgcolor="#CCCCCC"><span class="style9">pab p/ faq</span></td>
+        </tr>
+	    <!-- BEGIN BLOCK_PERGUNTAS_A -->
+        <tr>
+			<td>{IDPA}</td>
+			<td>{PERGUNTAPA}</td>
+			<td align='center'>{IDIOMAPA}</td>
+			<td align='center'>{FAQPA}</td>
+			<td align='center'><a href='editpab.php?id={IDPA}'>Editar</a></td>
+			<td align='center'><a href='delreg.php?id={IDPA}&tabela=pabertas&chave=id_pa'>Excluir</a></td>
+			<td align='center'><a href='pabtofaq.php?id={IDPA}'>exportar</a></td>
+		</tr>
+		<!-- END BLOCK_PERGUNTAS_A -->
+		</table>
+        </div>
+        <br style="clear:both" />
+        <div id="footer" style="border-top:dotted 1px #CCC; padding:20px">
+			Copyright All rights reserved
+		</div>
+	</div>
+</body>
+</html>

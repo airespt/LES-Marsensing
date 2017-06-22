@@ -30,6 +30,10 @@
 	if ($tabela == "perguntas") {
 		header("Location: verfaq.php");
 	}
+	if ($tabela == "pabertas") {
+		header("Location: verpab.php");
+	}
+ }
  else
     // if id isn't set, or isn't valid, redirect back to view page
  {
@@ -39,7 +43,8 @@
 	if ($tabela == "perguntas") {
 		header("Location: verfaq.php");
 	}
- }
- 
- }
+	if ($tabela == "pabertas") {
+		header("Location: verpab.php");
+	}
+  }
 ?>
