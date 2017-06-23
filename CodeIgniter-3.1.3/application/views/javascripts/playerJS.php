@@ -24,7 +24,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     //var urlImg = '<?php echo base_url('imagens/p1.png')?>'
     //var urlImg = 'http://localhost/cod5/imagens/p1.png';
     
-    console.log(urlImg);
     var pos=0;
     xhttp1.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
