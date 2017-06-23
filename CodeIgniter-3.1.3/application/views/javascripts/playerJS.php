@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <!--
-/** Created by PhpStorm.
+/** 
  * User: Daniel
  * Date: 18-05-2017
  * Time: 19:00
@@ -13,31 +13,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <script language="javascript" type="text/javascript">
     var inicio = '2010-01-01 00:00:00';
-    var fim = '2010-01-01 00:01:00';
+    var fim =    '2010-01-02 00:01:00';
     var json;
-    var Player_init=false;
+    var PlayerActive=false;
     var totalFrames=0;
-    var player_timer;
+    var playerTimerID=0;
     var intrevale = 2000;
     var xhttp1 = new XMLHttpRequest();
     var url = '<?php echo base_url();?>' + "camadao";
-    //var urlImg = '<?php echo base_url('imagens/p1.png')?>'
-    //var urlImg = 'http://localhost/cod5/imagens/p1.png';
     
-    console.log(urlImg);
     var pos=0;
     xhttp1.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
         
+            console.log(this.responseText);
             json= JSON.parse(this.responseText);
             totalFrames = json['frames'].length;
-            //console.log(totalFrames);
+            console.log(json['frames']);
+            console.log(totalFrames);
             document.getElementById('slider1').value=0;
             document.getElementById('slider1').max=totalFrames-1;
-            enableTimer(false);
             pos=0;
-            Player_init=true;
-            enableTimePLayer(true);
+            PlayerActive=true;
+            startPlayerTimer();
             //swampLayer(pos);
         }
     };
@@ -45,20 +43,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     //Verifica se o player ja foi inicialisado, caso negativo inicialisa o player.
     //Activa o player
     function startPlayer(){
-        if(Player_init) 
+        if(PlayerActive) 
         {
-            enableTimePLayer(true);
+            startPlayerTimer();
         }
         else{
+            stopRefreshTimer();
             xhttp1.open("GET", url+"/?dts=" + inicio + "&dte=" + fim  , true);
             xhttp1.send();
+        }
+    }
+    
+    function stopPlayerTimer(){
+        if(playerTimerID!==0){
+            clearTimeout(playerTimerID);
+            playerTimerID=0;
         }
     }
     
     //evento do botao pause
     //pausa o player
     function PausePlayer(){
-        enableTimePLayer(false);
+        stopPlayerTimer();
     }
     //por acabar
     //evento do botao stop
@@ -72,22 +78,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
     
     //timer do player
-    function enableTimePLayer(isEnable){
-        if(isEnable==true) {
+    function startPlayerTimer(){
+        if(playerTimerID===0) {
+            console.log("startPlayerTimer");
             player_timer = setInterval(setNextFrame, intrevale); 
             setNextFrame();
         }
-        else
-            clearTimeout(player_timer);
     }
     
+    function stopPlayerTimer(){
+        if(playerTimerID===0) {
+            clearTimeout(playerTimerID);
+            playerTimerID=0;
+        }
+    }
     //Carrega os frames seguinte
     function setNextFrame(){
         swampLayer(pos);
         document.getElementById('slider1').value=pos;
         pos++;
         if(pos==totalFrames)
-            enableTimePLayer(false);
+            stopPlayerTimer();
     }
     
     //evento do sidebar

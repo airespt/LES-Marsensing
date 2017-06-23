@@ -72,7 +72,14 @@
                        ->where('superficie.TimeStamp =', $t)
                        ->where('tipo', 'map')
                        ->get();
-          return $dt->result();
+          $res = $dt->result();
+          foreach($res as $zona) {
+              if( strtolower(substr($zona->url, 0, 4)) !== 'http') {
+                  $zona->url = $this->hostURL . $zona->url;
+              }
+          }
+          
+          return $res;
       }
       
       
