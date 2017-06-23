@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+ <html>
+ <head>
+ <title>Edit Record - Idiomas</title>
+ </head>
+ <body>
+ <h3>Editar idioma</h3>
+ <form action="editidi.php?id={IDIDI}" method="post">
+ 
+ <table>
+ 
+ <!-- BEGIN BLOCK_IDIOMAS -->
+ <tr>
+ <td>ID: </td><td>{IDIDI}</td>
+ </tr>
+  
+ <tr>
+ <td>Idioma: *</td><td><input type="text" name="idioma" value="{IDIOMA}" size="10"></td>
+ </tr>
+ 
+  <!-- END BLOCK_IDIOMAS -->
+ 
+</table>
+
+ <p>* required</p>
+ <input type="submit" name="submit" value="Submit">
+
+ </form> 
+ </body>
+ </html>

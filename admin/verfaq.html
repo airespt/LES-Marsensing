@@ -20,9 +20,9 @@
 			<ul>
 				<li><a href="admin.php">Home</a></li>
 				
-				<!-- BEGIN BLOCK_CATEGORIAS -->
-				<li><a href='procura.php?id={IDCAT}'>{NOME}</a></li>
-				<!-- END BLOCK_CATEGORIAS -->
+				<!-- BEGIN BLOCK_IDIOMAS -->
+				<li><a href='procura.php?id={IDIDI}'>{IDIOMA}</a></li>
+				<!-- END BLOCK_IDIOMAS -->
 							
 			</ul>
 			<p>&nbsp;</p>
@@ -50,7 +50,7 @@
 	    <!-- BEGIN BLOCK_PERGUNTAS -->
         <tr>
 			<td>{IDFAQ}</td>
-			<td>{NOME}</td>
+			<td>{PERGUNTA}</td>
 			<td align='center'><a href='editfaq.php?id={IDFAQ}'>Editar</a></td>
 			<td align='center'><a href='delreg.php?id={IDFAQ}&tabela=perguntas&chave=id_faq'>Excluir</a></td>
 		</tr>

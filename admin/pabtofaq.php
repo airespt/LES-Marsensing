@@ -54,7 +54,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0)
           or die(mysql_error()); 
  
   // save the data to the database
-		  @mysql_query("INSERT perguntas SET cat_id =$idioma, nome='$pergunta', descricao='$resposta'")
+		  @mysql_query("INSERT perguntas SET idi_id =$idioma, pergunta='$pergunta', resposta='$resposta'")
 		  or die(mysql_error()); 
  
 	// once saved, redirect back to the view page

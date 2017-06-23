@@ -1,6 +1,6 @@
 <?php
 /* 
- EDITFAQ.PHP
+ EDITIDI.PHP
  Allows user to edit specific entry in database
 */
 
@@ -25,13 +25,10 @@ use raelgc\view\Template;
 		
        // get form data, making sure it is valid
        $id = $_GET['id'];
-	   $idi_id = @ mysql_real_escape_string(htmlspecialchars($_POST['idi_id']));
-       $pergunta = @ mysql_real_escape_string(htmlspecialchars($_POST['pergunta']));
-	   $resposta = @ mysql_real_escape_string(htmlspecialchars($_POST['resposta']));
-	   
- 
+	   $idioma = @ mysql_real_escape_string(htmlspecialchars($_POST['idioma']));
+	    
        // check that filled in
-       if ($idi_id == '' || $pergunta == '' || $resposta == '')
+       if ($idioma == '')
        {
           // generate error message
           $error = 'ERROR: Please fill in all required fields!';
@@ -39,7 +36,7 @@ use raelgc\view\Template;
           //error, display form
 		  
           // Carrega o template novopro.html
-		  $tpl = new Template("editfaq.html");
+		  $tpl = new Template("editidi.html");
 		  
 		  // Mostra a tabela
 		  $tpl->show();
@@ -48,11 +45,11 @@ use raelgc\view\Template;
        else
        {
           // save the data to the database
-          @ mysql_query("UPDATE perguntas SET idi_id='$idi_id', pergunta='$pergunta', resposta='$resposta' WHERE id_faq=$id")
+          @ mysql_query("UPDATE idiomas SET idioma='$idioma' WHERE id_idi=$id")
           or die(mysql_error()); 
  
           // once saved, redirect back to the view page
-          header("Location: verfaq.php"); 
+          header("Location: veridi.php"); 
        }
     }
     else
@@ -73,27 +70,25 @@ use raelgc\view\Template;
 		$id = $_GET['id'];
 		/////
 		// criar query numa string
-		$query  = "SELECT * FROM perguntas WHERE id_faq=$id";
+		$query  = "SELECT * FROM idiomas WHERE id_idi=$id";
    
 		// executar a query
 		if(!($result = @ mysql_query($query,$db )))
 			showerror();
 
-		// Carrega o template novofaq.html
-		$tpl = new Template("editfaq.html");
+		// Carrega o template novopro.html
+		$tpl = new Template("editidi.html");
 
 
 		// mostra o resultado da query utilizando o template
 
 		$tuple = mysql_fetch_array($result,MYSQL_ASSOC);
       
-		$tpl->IDFAQ = $tuple["id_faq"];
-		$tpl->IDIID = $tuple["idi_id"];
-		$tpl->PERGUNTA =  $tuple["pergunta"];
-		$tpl->RESPOSTA = $tuple["resposta"];
+		$tpl->IDIDI = $tuple["id_idi"];
+		$tpl->IDIOMA =  $tuple["idioma"];
 		      
-		// Faz o parse do bloco PERGUNTAS
-		$tpl->block("BLOCK_PERGUNTAS");
+		// Faz o parse do bloco IDIOMAS
+		$tpl->block("BLOCK_IDIOMAS");
 
 		} // end for
 

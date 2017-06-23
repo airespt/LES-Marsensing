@@ -18,7 +18,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0)
  if($db) {
 		   
    // criar query numa string
-   $query  = "SELECT * FROM perguntas where cat_id = $id";
+   $query  = "SELECT * FROM perguntas where idi_id = $id";
    
    // executar a query
    if(!($result = @mysql_query($query,$db )))
@@ -36,7 +36,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0)
       
       
       $tpl->IDFAQ = $tuple["id_faq"];
-      $tpl->NOME =  $tuple["nome"];
+      $tpl->PERGUNTA =  $tuple["pergunta"];
           
       // Faz o parse do bloco PERGUNTAS
       $tpl->block("BLOCK_PERGUNTAS");
@@ -44,7 +44,7 @@ if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0)
     } // end for
 	
 	// criar query numa string
-   $queryc  = "SELECT * FROM categorias";
+   $queryc  = "SELECT * FROM idiomas";
    
       // executar a query
    if(!($resultc = @mysql_query($queryc,$db )))
@@ -54,11 +54,11 @@ if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0)
     for($i=0; $i<$nrowsc; $i++) {
       $tuplec = mysql_fetch_array($resultc,MYSQL_ASSOC);
       
-      $tpl->IDCAT =  $tuplec["id_cat"];
-      $tpl->NOME =  $tuplec["nome"];
+      $tpl->IDIDI =  $tuplec["id_idi"];
+      $tpl->IDIOMA =  $tuplec["idioma"];
           
-      // Faz o parse do bloco CATEGORIAS
-      $tpl->block("BLOCK_CATEGORIAS");
+      // Faz o parse do bloco IDIOMAS
+      $tpl->block("BLOCK_IDIOMAS");
 
     } // end for
 	

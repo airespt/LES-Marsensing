@@ -43,20 +43,20 @@ INSERT INTO `admins` (`id_adm`, `utilizador`, `senha`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `categorias`
+-- Estrutura da tabela `idiomas`
 --
 
-CREATE TABLE IF NOT EXISTS `categorias` (
-  `id_cat` tinyint(4) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(3) NOT NULL,
-  PRIMARY KEY (`id_cat`)
+CREATE TABLE IF NOT EXISTS `idiomas` (
+  `id_idi` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `idioma` varchar(3) NOT NULL,
+  PRIMARY KEY (`id_idi`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- Extraindo dados da tabela `categorias`
+-- Extraindo dados da tabela `idiomas`
 --
 
-INSERT INTO `categorias` (`id_cat`, `nome`) VALUES
+INSERT INTO `idiomas` (`id_idi`, `idioma`) VALUES
 (1, 'PT'),
 (2, 'UK'),
 (3, 'DE'),
@@ -71,9 +71,9 @@ INSERT INTO `categorias` (`id_cat`, `nome`) VALUES
 
 CREATE TABLE IF NOT EXISTS `perguntas` (
   `id_faq` int(11) NOT NULL AUTO_INCREMENT,
-  `cat_id` tinyint(4) NOT NULL,
-  `nome` varchar(300) NOT NULL,
-  `descricao` text NOT NULL,
+  `idi_id` tinyint(4) NOT NULL,
+  `pergunta` varchar(300) NOT NULL,
+  `resposta` text NOT NULL,
   PRIMARY KEY (`id_faq`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `perguntas` (
 -- Extraindo dados da tabela `perguntas`
 --
 
-INSERT INTO `perguntas` (`id_faq`, `cat_id`, `nome`, `descricao`) VALUES
+INSERT INTO `perguntas` (`id_faq`, `idi_id`, `pergunta`, `resposta`) VALUES
 (1, 1, 'O que é o ShippingNoise.com ?', 'Esta página mostra resultados de um modelo dos níveis de ruído subaquático gerado pelo tráfego marítimo - designado por ruído naval. O ruído naval é uma de diversas formas de introdução de ruído no meio marinho.'),
 (2, 1, 'Porque razão foi criada esta página?', 'O objectivo é mostrar a contribuição do tráfego marítimo para o nível de ruído subaquático em larga escala, o qual, hoje em dia, se apresenta como uma forma de poluição crónica nos oceanos. O ruído subaquático tem sido objecto de diversos estudos com respeito aos efeitos sobre a fauna marinha. Este sítio não mostra medidas directas de ruído. Os dados mostrados são obtidos através de um modelo computacional de propagação acústica. Devido à dificuldade prática de obter medidas directas nestas escalas espaciais estes resultados podem ser utilizados como boa aproximação, em complemento a medidas directas.'),
 (3, 1, 'O que é ruído subaquático?', 'Ruído Subaquático resulta da introdução de energia na forma de ondas mecânicas no meio subaquático. Neste caso, o meio subaquático é o ambiente marinho.'),

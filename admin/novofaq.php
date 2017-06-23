@@ -13,12 +13,12 @@ if (isset($_POST['submit']))
  //
 //   obtain form data
 //
-	$cat_id = @ mysql_real_escape_string(htmlspecialchars($_POST['cat_id']));
-    $nome = @ mysql_real_escape_string(htmlspecialchars($_POST['nomeper']));
-	$descricao = @ mysql_real_escape_string(htmlspecialchars($_POST['descricao']));
+	$idi_id = @ mysql_real_escape_string(htmlspecialchars($_POST['cat_id']));
+    $pergunta = @ mysql_real_escape_string(htmlspecialchars($_POST['pergunta']));
+	$resposta = @ mysql_real_escape_string(htmlspecialchars($_POST['resposta']));
 		
 
-if ($cat_id == '' || $nome == '' || $descricao == '')
+if ($idi_id == '' || $pergunta == '' || $resposta == '')
    {
           // generate error message
           echo 'ERROR: Please fill in all required fields!';
@@ -27,7 +27,7 @@ else
    {
 	   
 	// save the data to the database
-	@mysql_query("INSERT perguntas SET cat_id =$cat_id, nome='$nome', descricao='$descricao'")
+	@mysql_query("INSERT perguntas SET idi_id =$idi_id, pergunta='$pergunta', resposta='$resposta'")
 	or die(mysql_error()); 
  
 	// once saved, redirect back to the view page
