@@ -190,9 +190,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <button  onclick="accordion('player', true)" class="w3-bar-item w3-button w3-leftbar w3-card-4  w3-border-khaki" style="margin-top:0.67em; font-size:18px; display: block"">Player </button>
                         <div id ="player" class=" w3-container w3-hide w3-bar w3-card-4" style="margin-top:0.67em; margin-bottom:0.67em">
                             <!--Enter a date after 1980-01-01:--><br>
-                            <input id="date1" onchange="printD()" type="date" name="inicio" min="2000-01-02">&nbsp;Start<br><br>
+                            <input id="date1" onchange="updateDate1()" type="date" name="inicio" min="2000-01-02">&nbsp;Start<br><br>
                             <!--Enter a date after 2000-01-01:<br-->
-                            <input type="date" name="fim" min="2017-03-02">&nbsp;End<br><br>
+                            <input id="date2" onchange="updateDate2()"type="date" name="fim" min="2017-03-02">&nbsp;End<br><br>
 
 
                             <button class="w3-btn w3-teal w3-round-large " onclick="StartPlayer(); show('slider1');"><i class="fa fa-play" style="font-size:14px;"></i></button>
