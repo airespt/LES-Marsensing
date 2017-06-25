@@ -104,7 +104,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         xhttp01.open("GET", url1, true);
         xhttp01.send();
     }
-    updateJson1();
+    //updateJson1();
 
 
 </script>

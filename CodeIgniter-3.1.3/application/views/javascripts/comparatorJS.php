@@ -31,6 +31,8 @@ function startComparator(){
     pos = box2.indexOf("T");
     box2 = box2.substring(0, pos);
     document.getElementById("date4").value = box2;
+    updateJson1();
+    updateJson2();
     setCustomLayer1(currCustomLayer);
     setCustomLayer2(currCustomLayer);
 
