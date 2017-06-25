@@ -120,9 +120,9 @@ var currCustomLayer = 'map'; // global do current customlayer. possui o tipo 'ma
         for (var l in barcosJson) {
 //            console.log(barcosJson[l]);
             ships.push(new L.CircleMarker(JSON.parse(barcosJson[l]["localizacao"]), shipMarkerOptions)
-                            .bindTooltip(barcosJson[l]["Nome"])
-                            .bindPopup('<p>'+ barcosJson[l]["localizacao"] +'</p>'
-                                      +'<p>'+ barcosJson[l]["Velocidade"] +'</p>')
+                            .bindTooltip('Name: '+ barcosJson[l]["Nome"])
+                            .bindPopup('<p>Location: '+ barcosJson[l]["localizacao"] +'</p>'
+                                      +'<p>Speed: '+ barcosJson[l]["Velocidade"] +'</p>')
             );
         }
         shipsLayerGroup = L.layerGroup(ships).addTo(leafMap);
