@@ -140,19 +140,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <body>
                             <div id="comparator_modal_body">
                                 <div class=w3-row">
-                                   <div id="map01_comparator" class="w3-half w3-text-black" style = "padding-right:1px"></div>
-                                    <div id="map02_comparator" class="w3-half w3-text-black" style = "padding-left:1px"></div>
+                                   <div id="map01_comparator" class=" w3-half w3-text-black"></div>
+                                    <div id="map02_comparator" class="w3-half w3-text-black"></div>
+                                </div>
                                     <div class="w3-row">
-                                        <div class="w3-half w3-center w3-text-black">
-                                            <input id="date3" onchange= "updateJson1();" type="date" name="time_map_1" min="2000-01-02"><br>
-                                            <div id="time_stamp1">Time_stamp</div>
+                                        <div class="w3-half">
+                                            <input id="date3" class = "w3-center"onchange= "updateJson1();" type="date" name="time_map_1" min="2000-01-02"><br>
                                         </div>
-                                        <div class="w3-half w3-center w3-text-black">
-                                            <input id="date4" onchange= "updateJson2();" type="date" name="time_map_2" min="2017-03-02"><br>
-                                            <div id = "time_stamp2">Time_stamp</div>
+                                        <div class="w3-half">
+                                            <input id="date4" class = "w3-center" onchange= "updateJson2();" type="date" name="time_map_2" min="2017-03-02"><br>
                                         </div>
                                     </div>
-                                </div>
+
                             </div>
                         </body>
                         <footer class="w3-container w3-light-grey">

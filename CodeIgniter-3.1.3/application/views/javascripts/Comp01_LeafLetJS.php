@@ -77,16 +77,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         console.log(layersJson1);
     }
 
-    var xhttp1 = new XMLHttpRequest();
+    var xhttp01 = new XMLHttpRequest();
     var responseJSON1;
-    var d1;
+    var d3;
 
-    xhttp1.onreadystatechange = function() {
+    xhttp01.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             responseJSON1 = JSON.parse(this.responseText);
             console.log(responseJSON1);
-            if (d1 !== responseJSON1['datahora']){
-                d1 = responseJSON1['datahora'];
+            if (d3 !== responseJSON1['datahora']){
+                d3 = responseJSON1['datahora'];
                 layersJson1 = responseJSON1['camadas'];
                // console.log(currCustomLayer1);
                 setCustomLayer1(currCustomLayer);
@@ -101,8 +101,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         if(lastDate1 !== "")
             url1 += "?dt=" + lastDate1;
         console.log("A -> " + lastDate1);
-        xhttp1.open("GET", url1, true);
-        xhttp1.send();
+        xhttp01.open("GET", url1, true);
+        xhttp01.send();
     }
     updateJson1();
 

@@ -88,14 +88,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
     var xhttp2 = new XMLHttpRequest();
     var responseJSON2;
-    var d2;
+    var d4;
 
     xhttp2.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             responseJSON2 = JSON.parse(this.responseText);
             console.log(responseJSON2);
-            if (d2 !== responseJSON2['datahora']){
-                d2 = responseJSON2['datahora'];
+            if (d4 !== responseJSON2['datahora']){
+                d4 = responseJSON2['datahora'];
                 layersJson2 = responseJSON2['camadas'];
                // console.log("Layer2:"+ currCustomLayer);
                 setCustomLayer2(currCustomLayer);
