@@ -1,0 +1,37 @@
+Instrucoes de instalação do site Marsensing:
+
+ Componentes do zip:
+------------------
+ MarsensingCI - Pasta principal do site
+ admin - Pasta do backoffice administração
+ sqltudo.sql - script de configuração da BD com dados de demonstração
+ install.txt - este ficheiro de instruções
+
+ 
+ Prerequisitos:
+------------------
+ Base de dados SQL compativel,
+ Servidor http (ex: Apache)
+
+ 
+ Instruções:
+------------------
+ - Copiar as pastas 'MarsensingCI' e 'admin' para o conteúdo da pasta publica do servidor http, geralmente chamada 'www' ou 'htdocs'.
+ - Importar o script 'sqltudo.sql', este cria uma nova base de dados com o nome 'noiseship', cria todas as tabelas e insere um conjunto de dados demo.
+ 
+ 
+ Configuração do acesso à base de dados:
+------------------
+ É necessário indicar o host, username e password em dois ficheiros:
+ 1- 'MarsensingCI/application/config/database.php'
+ 2- 'admin/includes/db.inc'
+ O nome da base de dados 'noiseship' já deve estar corretamente preenchido.
+
+ 
+Instalação concluída. 
+ O site está disponível apontando o browser para a pasta publica 'MarsensingCI'
+ O backoffice encontra-se apontando o browser para 'admin/indexa.html'
+
+ Testado em
+------------------
+ Apache 2.4.17 e MySQL 10.1.8-MariaDB
