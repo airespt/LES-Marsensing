@@ -26,7 +26,7 @@ function startComparator(){
     var pos = box1.indexOf("T");
     box1 = box1.substring(0, pos);
     document.getElementById("date3").value = box1;
-    console.log(box1);
+    //console.log(box1);
     var box2 = yesterday.toISOString();
     pos = box2.indexOf("T");
     box2 = box2.substring(0, pos);

@@ -74,7 +74,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             layerControls1 = L.control.layers(layerGroupFundo1).addTo(mymap01);   // http://leafletjs.com/examples/layers-control/
 
         currCustomLayer1 = tipo1;
-        console.log(layersJson1);
+       // console.log(layersJson1);
     }
 
     var xhttp01 = new XMLHttpRequest();
@@ -84,7 +84,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     xhttp01.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             responseJSON1 = JSON.parse(this.responseText);
-            console.log(responseJSON1);
+            //console.log(responseJSON1);
             if (d3 !== responseJSON1['datahora']){
                 d3 = responseJSON1['datahora'];
                 layersJson1 = responseJSON1['camadas'];
@@ -95,12 +95,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
     function updateJson1(){
 //      console.log("<?php echo base_url(); ?>");
-    console.log("updating json");
+    //console.log("updating json");
         var url1 = '<?php echo base_url('/Respondao');?>';
         var lastDate1 = document.getElementById("date3").value + " 00:00:00";
         if(lastDate1 !== "")
             url1 += "?dt=" + lastDate1;
-        console.log("A -> " + lastDate1);
+        //console.log("A -> " + lastDate1);
         xhttp01.open("GET", url1, true);
         xhttp01.send();
     }
