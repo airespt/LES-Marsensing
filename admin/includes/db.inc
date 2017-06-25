@@ -3,7 +3,7 @@
 $hostname = "127.0.0.1";
 $db_name = "noiseship";
 $db_user = "root";
-$db_passwd = "";
+$db_passwd = "root";
 
 
 function dbconnect($hostname, $db_name,$db_user,$db_passwd)
