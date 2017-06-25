@@ -4,16 +4,17 @@
 <script language="javascript">
             var name = "";
 
-            function show_hide(name) {
-                if(name === "button_player") {
-                    document.getElementById("button_comparator").style.display="none";
-                    document.getElementById("button_player").style.display="block";
-
+            function show_hide(name1, name2) {
+                    document.getElementById(name2).style.display="none";
+                    document.getElementById(name1).style.display="block";
+                if(name1 === "button_comparator") {
+                    StopPLayer();
                 }
-
-                if(name === "button_comparator") {
-                    document.getElementById("button_player").style.display = "none";
-                    document.getElementById("button_comparator").style.display = "block";
-                }
+            }
+            function show(name1){
+                document.getElementById(name1).style.display="block";
+            }
+            function hide(name1){
+                document.getElementById(name1).style.display="none";
             }
         </script>

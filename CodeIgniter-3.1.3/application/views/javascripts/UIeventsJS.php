@@ -11,6 +11,8 @@ function onClick_noise() {
         currCustomLayer = "map";
         startRefreshTimer();
     }
+    show_hide('button_player', 'button_comparator');
+
 }
 function onClick_p05() {
     if (currCustomLayer !== 'p05') {
@@ -18,6 +20,8 @@ function onClick_p05() {
         currCustomLayer = "p05";
         startRefreshTimer();
     }
+    show_hide('button_comparator', 'button_player');
+    hide('slider1');
 }
 function onClick_p95() {
     if( currCustomLayer !== 'p95') {
@@ -25,6 +29,8 @@ function onClick_p95() {
         currCustomLayer = "p95";
         startRefreshTimer();
     }
+    show_hide('button_comparator', 'button_player');
+    hide('slider1');
 }
 function onClick_sel7() {
     if( currCustomLayer !== 'sel7') {
@@ -32,6 +38,8 @@ function onClick_sel7() {
         currCustomLayer = "sel7";
         startRefreshTimer();
     }
+    show_hide('button_comparator', 'button_player');
+    hide('slider1');
 }
 
 //document.getElementById("comp").style.visibility = "hidden";

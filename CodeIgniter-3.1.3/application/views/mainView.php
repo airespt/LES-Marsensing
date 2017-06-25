@@ -178,16 +178,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				  <!-- Menu -->
 				  <div class="w3-card-4">
 				  <h4 class="w3-bar-item w3-card-4 w3-leftbar w3-border-white" style="text-shadow:3px 1px 0 #044;">Layers</h4>
-				  <button class="w3-bar-item w3-button" onclick="onClick_noise();show_hide('button_player');">Noise Map</button>
-				  <button class="w3-bar-item w3-button" onclick="onClick_p05(); show_hide('button_comparator');">Stats p05</button>
-				  <button class="w3-bar-item w3-button" onclick="onClick_p95(); show_hide('button_comparator');">Stats p95</button>
-				  <button class="w3-bar-item w3-button" onclick="onClick_sel7(); show_hide('button_comparator');">Stats SEL7</button>
+				  <button class="w3-bar-item w3-button" onclick="onClick_noise();">Noise Map</button>
+				  <button class="w3-bar-item w3-button" onclick="onClick_p05();">Stats p05</button>
+				  <button class="w3-bar-item w3-button" onclick="onClick_p95();">Stats p95</button>
+				  <button class="w3-bar-item w3-button" onclick="onClick_sel7();">Stats SEL7</button>
 				 </div>
 
 				<!-- Player -->
 
                     <div id = "button_player" style="display:block">
-                        <button  onclick="accordion('player')" class="w3-bar-item w3-button w3-leftbar w3-card-4  w3-border-khaki" style="margin-top:0.67em; font-size:18px; display: block"">Player </button>
+                        <button  onclick="accordion('player', true)" class="w3-bar-item w3-button w3-leftbar w3-card-4  w3-border-khaki" style="margin-top:0.67em; font-size:18px; display: block"">Player </button>
                         <div id ="player" class=" w3-container w3-hide w3-bar w3-card-4" style="margin-top:0.67em; margin-bottom:0.67em">
                             <!--Enter a date after 1980-01-01:--><br>
                             <input id="date1" onchange="printD()" type="date" name="inicio" min="2000-01-02">&nbsp;Start<br><br>
@@ -195,16 +195,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <input type="date" name="fim" min="2017-03-02">&nbsp;End<br><br>
 
 
-                            <button class="w3-btn w3-teal w3-round-large " onclick="StartPlayer()"><i class="fa fa-play" style="font-size:14px;"></i></button>
+                            <button class="w3-btn w3-teal w3-round-large " onclick="StartPlayer(); show('slider1');"><i class="fa fa-play" style="font-size:14px;"></i></button>
                             <button class="w3-btn w3-orange w3-text-white w3-round-large" onclick="PausePlayer()" ><i class="fa fa-pause" style="font-size:14px;"></i></button>
-                            <button class="w3-btn w3-red w3-round-large"><i class="fa fa-stop" style="font-size:14px;" onclick="StopPLayer()"></i></button>
+                            <button class="w3-btn w3-red w3-round-large"><i class="fa fa-stop" style="font-size:14px;" onclick="StopPLayer(); hide('slider1');"></i></button>
                             <br><br>
-                            <input type="range" id="slider1" value="10" min="0" max="100" oninput="JumpFrame()" title=value>
+                            <input type="range" id="slider1" value="10" min="0" max="100" oninput="JumpFrame()" title=value style = "display:none">
                         </div>
                     </div>
                     <!-- Comparator -->
                     <div id="button_comparator" style = "display: none;">
-                        <button  onclick="accordion('comparator')" class="w3-bar-item w3-button w3-leftbar w3-card-4  w3-border-khaki" style="margin-top:0.67em; font-size:18px;">Comparator </button>
+                        <button  onclick="accordion('comparator', false)" class="w3-bar-item w3-button w3-leftbar w3-card-4  w3-border-khaki" style="margin-top:0.67em; font-size:18px;">Comparator </button>
 
                         <div id ="comparator" class=" w3-container w3-hide w3-bar w3-card-4" style="margin-top:0.67em; margin-bottom:0.67em">
                             <br>
