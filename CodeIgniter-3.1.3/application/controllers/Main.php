@@ -17,5 +17,9 @@ class Main extends CI_Controller {
         $this->load->view('javascripts/playerJS');
         $this->load->view('javascripts/UIeventsJS');
         $this->load->view('javascripts/accordionJS');
+        $this->load->view('javascripts/show_hideJS');
+        $this->load->view('javascripts/Comp01_LeafLetJS');
+        $this->load->view('javascripts/Comp02_LeafLetJS');
+        $this->load->view('javascripts/comparator_modal_loaderJS');
     }
 }
