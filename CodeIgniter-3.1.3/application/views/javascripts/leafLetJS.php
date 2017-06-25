@@ -76,23 +76,27 @@ var listaLayerFundo = ["Oceans", "NationalGeographic", "Topographic", "Terrain",
 var layersJson; // = JSON.parse('{layersJson}');
 var barcosJson;
 
-var currCustomLayer = 'map'; // global do current customlayer. possui o tipo 'map/p05/p95/sel7'. mais tarde, talvez definir mais tipos para o player e comparador
+var camadasLayerGroup;
+var camadas = [];
 
+var currCustomLayer = 'map'; // global do current customlayer. possui o tipo 'map/p05/p95/sel7'. mais tarde, talvez definir mais tipos para o player e comparador
     // Esta é chamada pelo refreshJS
     function setCustomLayer(tipo)
     {
         console.log("setCustomLayer:"+ tipo);
-        leafMap.eachLayer(function(lay){    // remove all custom layers
-            if( lay.pane === 'overlayPane' )
-                leafMap.removeLayer(lay);
-        });
+        if( camadasLayerGroup !== undefined && tipo !== "player") {
+            camadasLayerGroup.clearLayers();
+            camadas = [];
+        }
 
         for (var l in layersJson) {
-            if( layersJson[l]["tipo"] === tipo )
-                leafMap.addLayer(new L.ImageOverlay(layersJson[l]["url"], JSON.parse(layersJson[l]["bounds"]), {zIndex: 99}));
+            if( layersJson[l]["tipo"] === (tipo === "player" ? "map" : tipo) ) {
+                camadas.push(new L.ImageOverlay(layersJson[l]["url"], JSON.parse(layersJson[l]["bounds"]), {zIndex: 99}));
+            }
         }
-        currCustomLayer = tipo;
-        if( tipo === "map") {
+        camadasLayerGroup = L.layerGroup(camadas).addTo(leafMap);
+
+        if( tipo === "map") { // show barcos
             setBarcosMarkers();
 
             if( layerControls !== undefined )
@@ -106,6 +110,8 @@ var currCustomLayer = 'map'; // global do current customlayer. possui o tipo 'ma
                 layerControls.remove();
             layerControls = L.control.layers(layerGroupFundo).addTo(leafMap);   // http://leafletjs.com/examples/layers-control/
         }
+
+        currCustomLayer = tipo;
     }
 
     var shipsLayerGroup;
