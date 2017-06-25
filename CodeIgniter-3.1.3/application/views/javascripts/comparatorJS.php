@@ -18,7 +18,7 @@
 
 
 function startComparator(){
-    stopRefreshTimer();
+    //stopRefreshTimer();
     var today = new Date();
     var yesterday = new Date();
     yesterday.setDate(yesterday.getDate()-1);
