@@ -35,17 +35,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             document.getElementById('slider1').max=totalFrames-1;
             pos=0;
             PlayerActive=true;
-            startPlayerTimer();
+            StartPlayerTimer();
             //swampLayer(pos);
         }
     };
     //evento do botao play
     //Verifica se o player ja foi inicialisado, caso negativo inicialisa o player.
     //Activa o player
-    function startPlayer(){
+    function StartPlayer(){
         if(PlayerActive) 
         {
-            startPlayerTimer();
+            StartPlayerTimer();
         }
         else{
             stopRefreshTimer();
@@ -54,8 +54,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
     }
     
-    function stopPlayerTimer(){
-        if(playerTimerID!==0){
+    function StopPlayerTimer(){
+        if(playerTimerID!=0){
+            console.log("pause!222!");
             clearTimeout(playerTimerID);
             playerTimerID=0;
         }
@@ -64,53 +65,58 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     //evento do botao pause
     //pausa o player
     function PausePlayer(){
-        stopPlayerTimer();
+        console.log("pause!!");
+        StopPlayerTimer();
     }
-    //por acabar
+    
     //evento do botao stop
     //para o player e retoma o refresh do site
     function StopPLayer(){
         console.log("stop!!");
         //lastDate = "";
-        Player_init=false;
-        clearTimeout(player_timer);
-        enableTimer(true);
+        PlayerActive=false;
+        clearTimeout(playerTimerID);
+        startRefreshTimer();
+        //enableTimer(true);
     }
     
     //timer do player
-    function startPlayerTimer(){
+    function StartPlayerTimer(){
         if(playerTimerID===0) {
             console.log("startPlayerTimer");
-            player_timer = setInterval(setNextFrame, intrevale); 
-            setNextFrame();
+            playerTimerID = setInterval(SetNextFrame, intrevale); 
+            SetNextFrame();
         }
     }
     
-    function stopPlayerTimer(){
-        if(playerTimerID===0) {
-            clearTimeout(playerTimerID);
+    /*
+    function StopPlayerTimer(){
+        if(playerTimerID!=0) {
+            console.log("devia parar");
+            clearInterval(playerTimerID);
+            //clearTimeout(playerTimerID);
             playerTimerID=0;
         }
-    }
+    }*/
     //Carrega os frames seguinte
-    function setNextFrame(){
-        swampLayer(pos);
+    function SetNextFrame(){
+        SwapLayer(pos);
         document.getElementById('slider1').value=pos;
         pos++;
         if(pos==totalFrames)
-            stopPlayerTimer();
+            StopPlayerTimer();
     }
     
     //evento do sidebar
     //salta para os frames selevionados no sidebar
-    function jumpFrame(){
+    function JumpFrame(){
         pos=document.getElementById('slider1').value;
         console.log(pos);
-        setNextFrame();
+        SetNextFrame();
     }
     
     //atualisa o mapa
-    function swampLayer(pos)
+    function SwapLayer(pos)
     {
         var frames = json['frames'];
         var list = frames[pos];
@@ -118,6 +124,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         console.log(layersJson);
         setCustomLayer(currCustomLayer);
         
+    }
+    
+    var newDate = new Date();
+    //var datetime = newDate.today();
+    console.log(newDate);
+    
+    function printD(){
+        var myElement = document.getElementById("date1").innerHTML;
+        var t = myElement.toISOString()
+        console.log(myElement);
     }
   
 </script>
