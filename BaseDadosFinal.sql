@@ -244,11 +244,10 @@ CREATE TABLE `superficie` (
 -- Dumping data for table `superficie`
 --
 
+
 LOCK TABLES `superficie` WRITE;
 /*!40000 ALTER TABLE `superficie` DISABLE KEYS */;
-LOCK TABLES `superficie` WRITE;
-/*!40000 ALTER TABLE `superficie` DISABLE KEYS */;
-INSERT INTO `superficie` VALUES (1,'2000-01-01 00:00:00','portugal','www.imagem1','map'),
+INSERT INTO `superficie` VALUES 
 
 (1,'2017-01-01 00:00:00','PortugalSW','portugalmap.png','map'),
 (2,'2017-01-01 00:00:00','PortugalSW','portugalp05.png','p05'),
