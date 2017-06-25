@@ -195,10 +195,6 @@ INSERT INTO `embarcaoes_subreficie` (`ID_barco`, `IDSubreficie`, `Velocidade`, `
 (4, 1, 11, '[37, -9.5]', '55');
 
 --
--- Indexes for dumped tables
---
-
---
 -- Indexes for table `embarcaoes_subreficie`
 --
 ALTER TABLE `embarcaoes_subreficie`
@@ -209,7 +205,7 @@ ALTER TABLE `embarcaoes_subreficie`
 --
 -- Estrutura da tabela `admins`
 --
-
+DROP TABLE IF EXISTS `admins`;
 CREATE TABLE IF NOT EXISTS `admins` (
   `id_adm` int(11) NOT NULL AUTO_INCREMENT,
   `utilizador` varchar(20) NOT NULL,
@@ -229,7 +225,7 @@ INSERT INTO `admins` (`id_adm`, `utilizador`, `senha`) VALUES
 --
 -- Estrutura da tabela `idiomas`
 --
-
+DROP TABLE IF EXISTS `idiomas`;
 CREATE TABLE IF NOT EXISTS `idiomas` (
   `id_idi` tinyint(4) NOT NULL AUTO_INCREMENT,
   `idioma` varchar(3) NOT NULL,
@@ -252,7 +248,7 @@ INSERT INTO `idiomas` (`id_idi`, `idioma`) VALUES
 --
 -- Estrutura da tabela `perguntas`
 --
-
+DROP TABLE IF EXISTS `perguntas`;
 CREATE TABLE IF NOT EXISTS `perguntas` (
   `id_faq` int(11) NOT NULL AUTO_INCREMENT,
   `idi_id` tinyint(4) NOT NULL,
@@ -290,7 +286,7 @@ INSERT INTO `perguntas` (`id_faq`, `idi_id`, `pergunta`, `resposta`) VALUES
 --
 -- Estrutura da tabela `pabertas`
 --
-
+DROP TABLE IF EXISTS `pabertas`;
 CREATE TABLE IF NOT EXISTS `pabertas` (
   `id_pa` int(11) NOT NULL AUTO_INCREMENT,
   `idioma_pa` tinyint(4) NOT NULL,
