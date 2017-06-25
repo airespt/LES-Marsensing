@@ -185,20 +185,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				 </div>
 
 				<!-- Player -->
+
                     <div id = "button_player" style="display:block">
                         <button  onclick="accordion('player')" class="w3-bar-item w3-button w3-leftbar w3-card-4  w3-border-khaki" style="margin-top:0.67em; font-size:18px; display: block"">Player </button>
                         <div id ="player" class=" w3-container w3-hide w3-bar w3-card-4" style="margin-top:0.67em; margin-bottom:0.67em">
                             <!--Enter a date after 1980-01-01:--><br>
-                            <input type="date" name="inicio" min="2000-01-02">&nbsp;Start<br><br>
+                            <input id="date1" onchange="printD()" type="date" name="inicio" min="2000-01-02">&nbsp;Start<br><br>
                             <!--Enter a date after 2000-01-01:<br-->
                             <input type="date" name="fim" min="2017-03-02">&nbsp;End<br><br>
 
 
-                            <button class="w3-btn w3-teal w3-round-large " onclick="startPlayer()"><i class="fa fa-play" style="font-size:14px;"></i></button>
-                            <button class="w3-btn w3-orange w3-text-white w3-round-large" onclick="StopPlayer()" ><i class="fa fa-pause" style="font-size:14px;"></i></button>
-                            <button class="w3-btn w3-red w3-round-large"><i class="fa fa-stop" style="font-size:14px;"></i></button>
+                            <button class="w3-btn w3-teal w3-round-large " onclick="StartPlayer()"><i class="fa fa-play" style="font-size:14px;"></i></button>
+                            <button class="w3-btn w3-orange w3-text-white w3-round-large" onclick="PausePlayer()" ><i class="fa fa-pause" style="font-size:14px;"></i></button>
+                            <button class="w3-btn w3-red w3-round-large"><i class="fa fa-stop" style="font-size:14px;" onclick="StopPLayer()"></i></button>
                             <br><br>
-                            <input type="range" id="slider1" value="10" min="0" max="100" oninput="jumpFrame()" title=value>
+                            <input type="range" id="slider1" value="10" min="0" max="100" oninput="JumpFrame()" title=value>
                         </div>
                     </div>
                     <!-- Comparator -->
@@ -219,14 +220,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <br>
                         </div>
                     </div>
-                    <!-- END Comparator -->
 				<!-- Context info -->
-				<h4 class="w3-bar-item w3-card-4 w3-leftbar w3-border-light-grey" style="text-shadow:3px 1px 0 #044;">Context Info</h4>
+				    <h4 class="w3-bar-item w3-card-4 w3-leftbar w3-border-light-grey" style="text-shadow:3px 1px 0 #044;">Context Info</h4>
 					<!--				<div class="w3-bar-item">
 					<p>Re-béu-béu pardais ao ninho</p>
 				</div> -->
-				</div>
-			
+                </div>
 			<!-- MAP -->
             <div style="padding-left: 280px">
                 <div id="mapid"></div>
