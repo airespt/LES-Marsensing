@@ -1,12 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-/**
- * Created by PhpStorm.
- * User: Nikita
- * Date: 6/25/2017
- * Time: 11:46 AM
- */
+
 <head>
 </head>
 <script language="javascript">

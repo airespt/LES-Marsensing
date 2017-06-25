@@ -1,10 +1,4 @@
 
-/**
- * Created by PhpStorm.
- * User: Nikita
- * Date: 6/24/2017
- * Time: 1:33 PM
- */
 <head>
 </head>
 <script language="javascript">
