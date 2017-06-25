@@ -144,11 +144,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <div id="map02_comparator" class="w3-half w3-text-black" style = "padding-left:1px"></div>
                                     <div class="w3-row">
                                         <div class="w3-half w3-center w3-text-black">
-                                            <input type="date" name="time_map_1" min="2000-01-02"><br>
+                                            <input id="date3" type="date" name="time_map_1" min="2000-01-02"><br>
                                             <div id="time_stamp1">Time_stamp</div>
                                         </div>
                                         <div class="w3-half w3-center w3-text-black">
-                                            <input type="date" name="time_map_2" min="2017-03-02"><br>
+                                            <input id="date4" type="date" name="time_map_2" min="2017-03-02"><br>
                                             <div id = "time_stamp2">Time_stamp</div>
                                         </div>
                                     </div>
@@ -204,7 +204,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                     <!-- Comparator -->
                     <div id="button_comparator" style = "display: none;">
-                        <button  onclick="accordion('comparator', false)" class="w3-bar-item w3-button w3-leftbar w3-card-4  w3-border-khaki" style="margin-top:0.67em; font-size:18px;">Comparator </button>
+                        <button  onclick="startComparator()" class="w3-bar-item w3-button w3-leftbar w3-card-4  w3-border-khaki" style="margin-top:0.67em; font-size:18px;">Comparator </button>
 
                         <div id ="comparator" class=" w3-container w3-hide w3-bar w3-card-4" style="margin-top:0.67em; margin-bottom:0.67em">
                             <br>

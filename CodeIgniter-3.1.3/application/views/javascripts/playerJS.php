@@ -82,14 +82,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     //evento do botao stop
     //para o player e retoma o refresh do site
     function StopPLayer(){
-        console.log("stop!!");
-        //lastDate = "";
-        PlayerActive=false;
-        clearTimeout(playerTimerID);
-        playerTimerID=0;
-        currCustomLayer='map';
-        startRefreshTimer();
-        //enableTimer(true);
+       //console.log("ola");
+        if(PlayerActive==true)
+        {
+            console.log("stop!!");
+            //lastDate = "";
+            PlayerActive=false;
+            clearTimeout(playerTimerID);
+            playerTimerID=0;
+            currCustomLayer='map';
+            startRefreshTimer();
+            //enableTimer(true);
+        }
     }
     
     //timer do player
@@ -134,7 +138,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         var list = frames[pos];
         layersJson = list;
         console.log(layersJson);
-        setCustomLayer("map");
+        setCustomLayer("player");
         
     }
     
@@ -144,6 +148,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
     function startTime(){
         var today = new Date();
+        console.log(PlayerActive);
         //var yesterday = newDate.today();
         var yesterday = new Date();
         yesterday.setDate(yesterday.getDate()-1);
@@ -203,5 +208,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         console.log(document.getElementById("date1").value);
     }
     startTime();
+    
   
 </script>
