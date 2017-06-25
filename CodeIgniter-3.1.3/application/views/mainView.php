@@ -145,10 +145,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 </div>
                                     <div class="w3-row">
                                         <div class="w3-half">
-                                            <input id="date3" class = "w3-center"onchange= "updateJson1();" type="date" name="time_map_1" min="2000-01-02"><br>
+                                            <input id="date3" class = "w3-center"onchange= "updateJson1();" type="date" name="time_map_1" min="2010-01-01"><br>
                                         </div>
                                         <div class="w3-half">
-                                            <input id="date4" class = "w3-center" onchange= "updateJson2();" type="date" name="time_map_2" min="2017-03-02"><br>
+                                            <input id="date4" class = "w3-center" onchange= "updateJson2();" type="date" name="time_map_2" min="2010-01-01"><br>
                                         </div>
                                     </div>
 
