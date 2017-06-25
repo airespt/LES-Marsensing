@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // layer button handlers
 function onClick_noise() {
     if( currCustomLayer !== 'map') {
-        //stopPlayerTimer();
+        StopPLayer();
         currCustomLayer = "map";
         startRefreshTimer();
     }
@@ -16,7 +16,7 @@ function onClick_noise() {
 }
 function onClick_p05() {
     if (currCustomLayer !== 'p05') {
-        //stopPlayerTimer();
+        StopPLayer();
         currCustomLayer = "p05";
         startRefreshTimer();
     }
@@ -25,7 +25,7 @@ function onClick_p05() {
 }
 function onClick_p95() {
     if( currCustomLayer !== 'p95') {
-        //stopPlayerTimer();
+        StopPLayer();
         currCustomLayer = "p95";
         startRefreshTimer();
     }
@@ -34,7 +34,7 @@ function onClick_p95() {
 }
 function onClick_sel7() {
     if( currCustomLayer !== 'sel7') {
-        //stopPlayerTimer();
+        StopPLayer();
         currCustomLayer = "sel7";
         startRefreshTimer();
     }
