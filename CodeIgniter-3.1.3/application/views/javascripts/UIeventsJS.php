@@ -34,5 +34,8 @@ function onClick_sel7() {
     }
 }
 
+//document.getElementById("comp").style.visibility = "hidden";
+
+
 
 </script>

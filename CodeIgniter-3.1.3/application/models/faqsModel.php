@@ -9,10 +9,11 @@
         //Devolve todas os pares  pergunta/resposta na lingua escolhida
         //Por omissao a lingua é portugues
         public function getFaqs($lingua = 'portugues'){
+            $idioma= $lingua == 'portugues' ? 1 : 2;
             $this->load->database();
             $query=$this->db->select('pergunta, resposta')
-                    ->from('faqs')
-                    ->where('lingua', $lingua)
+                    ->from('perguntas')
+                    ->where('idi_id', $idioma)
                     ->get();
             $this->db->close();
             return $query->result();
@@ -20,8 +21,8 @@
         
         public function insertQuestion($email= 'teste$mail', $questao = 'O porque????'){
             $this->load->database();
-            $data = array('email' => $email,'questao' => $questao);
-            $this->db->insert('questoes_por_responder', $data);
+            $data = array('email' => $email,'pergunta_pa' => $questao);
+            $this->db->insert('pabertas', $data);
             $this->db->close();
         }
     }
