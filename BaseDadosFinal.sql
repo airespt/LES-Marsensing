@@ -284,7 +284,9 @@ INSERT INTO `superficie` VALUES
 (33,'2017-02-01 00:00:10','PortugalSW','p2.png','map'),
 (34,'2017-02-01 00:00:20','PortugalSW','p3.png','map'),
 (35,'2017-02-01 00:00:30','PortugalSW','p4.png','map'),
-(36,'2017-02-01 00:00:40','PortugalSW','p5.png','map');
+(36,'2017-02-01 00:00:40','PortugalSW','p5.png','map'),
+(37,'2017-06-01 00:00:00','PortugalSW','portugalmap.png','map'),
+(38,'2017-06-01 00:00:00','Spain','espanhamap.png','map');
 
 /*!40000 ALTER TABLE `superficie` ENABLE KEYS */;
 UNLOCK TABLES;
