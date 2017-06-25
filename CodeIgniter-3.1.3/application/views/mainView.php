@@ -207,11 +207,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                         <div id ="comparator" class=" w3-container w3-hide w3-bar w3-card-4" style="margin-top:0.67em; margin-bottom:0.67em">
                             <br>
-                            <select name="types">
-                                <option value="p05">p05</option>
-                                <option value="p95">p95</option>
-                                <option value="SEL7">SEL7</option>
-                            </select><br><br>
 
                             <!--Enter a date after 2000-01-01:<br-->
 
