@@ -53,4 +53,68 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
+    var layersJson2; // = JSON.parse('{layersJson}');
+
+    var camadasLayerGroup2;
+    var camadas2 = [];
+
+    var currCustomLayer2 = 'p05'; // global do current customlayer. possui o tipo 'map/p05/p95/sel7'. mais tarde, talvez definir mais tipos para o player e comparador
+    // Esta é chamada pelo refreshJS
+
+    function setCustomLayer2(tipo2)
+    {
+        console.log("setCustomLayer2:"+ tipo2);
+        if( camadasLayerGroup2 !== undefined) {
+            camadasLayerGroup2.clearLayers();
+            camadas2 = [];
+        }
+
+        for (var l in layersJson2) {
+           if( layersJson2[l]["tipo"] === tipo2 ) {
+                camadas2.push(new L.ImageOverlay(layersJson2[l]["url"], JSON.parse(layersJson2[l]["bounds"]), {zIndex: 99}));
+            }
+        }
+        camadasLayerGroup2 = L.layerGroup(camadas2).addTo(mymap02);
+
+
+
+
+        if( layerControls2 !== undefined )
+            layerControls2.remove();
+        layerControls2 = L.control.layers(layerGroupFundo2).addTo(mymap02);   // http://leafletjs.com/examples/layers-control/
+
+        currCustomLayer2 = tipo2;
+        console.log(layersJson2);
+    }
+    var xhttp2 = new XMLHttpRequest();
+    var responseJSON2;
+    var d2;
+
+    xhttp2.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            responseJSON2 = JSON.parse(this.responseText);
+            console.log(responseJSON2);
+            if (d2 !== responseJSON2['datahora']){
+                d2 = responseJSON2['datahora'];
+                layersJson2 = responseJSON2['camadas'];
+               // console.log("Layer2:"+ currCustomLayer);
+                setCustomLayer2(currCustomLayer);
+            }
+        }
+    }
+
+    function updateJson2(){
+//      console.log("<?php echo base_url(); ?>");
+        console.log("updating json");
+        var url2 = '<?php echo base_url('/Respondao');?>';
+        var lastDate2 = document.getElementById("date4").value + " 00:00:00";
+        if(lastDate2 !== "")
+            url2 += "?dt=" + lastDate2;
+        console.log("B -> " + lastDate2);
+        xhttp2.open("GET", url2, true);
+        xhttp2.send();
+    }
+    updateJson2();
+
+
 </script>

@@ -21,5 +21,7 @@ class Main extends CI_Controller {
         $this->load->view('javascripts/Comp01_LeafLetJS');
         $this->load->view('javascripts/Comp02_LeafLetJS');
         $this->load->view('javascripts/comparator_modal_loaderJS');
+        $this->load->view('javascripts/comparatorJS');
+
     }
 }

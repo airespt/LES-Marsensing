@@ -39,4 +39,72 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
     var layerControls1 = L.control.layers(layerGroupFundo1).addTo(mymap01);
+
+
+
+
+    var layersJson1; // = JSON.parse('{layersJson}');
+
+    var camadasLayerGroup1;
+    var camadas1 = [];
+
+    var currCustomLayer1 = 'p05'; // global do current customlayer. possui o tipo 'map/p05/p95/sel7'. mais tarde, talvez definir mais tipos para o player e comparador
+    // Esta é chamada pelo refreshJS
+
+    function setCustomLayer1(tipo1)
+    {
+        console.log("setCustomLayer1:"+ tipo1);
+        if( camadasLayerGroup1 !== undefined) {
+            camadasLayerGroup1.clearLayers();
+            camadas1 = [];
+        }
+
+        for (var l in layersJson1) {
+            if( layersJson1[l]["tipo"] === tipo1) {
+                camadas1.push(new L.ImageOverlay(layersJson1[l]["url"], JSON.parse(layersJson1[l]["bounds"]), {zIndex: 99}));
+            }
+        }
+        camadasLayerGroup1 = L.layerGroup(camadas1).addTo(mymap01);
+
+
+
+
+            if( layerControls1 !== undefined )
+                layerControls1.remove();
+            layerControls1 = L.control.layers(layerGroupFundo1).addTo(mymap01);   // http://leafletjs.com/examples/layers-control/
+
+        currCustomLayer1 = tipo1;
+        console.log(layersJson1);
+    }
+
+    var xhttp1 = new XMLHttpRequest();
+    var responseJSON1;
+    var d1;
+
+    xhttp1.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            responseJSON1 = JSON.parse(this.responseText);
+            console.log(responseJSON1);
+            if (d1 !== responseJSON1['datahora']){
+                d1 = responseJSON1['datahora'];
+                layersJson1 = responseJSON1['camadas'];
+               // console.log(currCustomLayer1);
+                setCustomLayer1(currCustomLayer);
+            }
+        }
+    }
+    function updateJson1(){
+//      console.log("<?php echo base_url(); ?>");
+    console.log("updating json");
+        var url1 = '<?php echo base_url('/Respondao');?>';
+        var lastDate1 = document.getElementById("date3").value + " 00:00:00";
+        if(lastDate1 !== "")
+            url1 += "?dt=" + lastDate1;
+        console.log("A -> " + lastDate1);
+        xhttp1.open("GET", url1, true);
+        xhttp1.send();
+    }
+    updateJson1();
+
+
 </script>

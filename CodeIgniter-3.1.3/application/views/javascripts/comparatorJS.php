@@ -16,33 +16,6 @@
 
 <script language="javascript" type="text/javascript">
 
-var layersJson1; // = JSON.parse('{layersJson}');
-var layersJson2; // = JSON.parse('{layersJson}');
-//var dd1 = document.getElementById("time_stamp1").value;
-//var dd2 = document.getElementById("time_stamp1").value;
-var JSONcomparator;
-var xhttpcompA = new XMLHttpRequest();
-var xhttpcompB = new XMLHttpRequest();
-var d3;
-var d4;
-xhttpcompA.onreadystatechange = function() {
-    if (this.readyState === 4 && this.status === 200) {
-        JSONcomparator = JSON.parse(this.responseText);
-        console.log(responseJSON);
-        d3 = responseJSON['datahora'];
-        layersJson1 = responseJSON['camadas'];
-    }
-};
-
-xhttpcompB.onreadystatechange = function() {
-    if (this.readyState === 4 && this.status === 200) {
-        JSONcomparator = JSON.parse(this.responseText);
-        console.log(responseJSON);
-        d4 = responseJSON['datahora'];
-        layersJson2 = responseJSON['camadas'];
-    }
-};
-
 
 function startComparator(){
     stopRefreshTimer();
@@ -58,32 +31,10 @@ function startComparator(){
     pos = box2.indexOf("T");
     box2 = box2.substring(0, pos);
     document.getElementById("date4").value = box2;
-    updatemap1();
-    updatemap2();
-    accordion('comparator', false);
+    setCustomLayer1(currCustomLayer);
+    setCustomLayer2(currCustomLayer);
+
 }
-
-function updatemap1(){
-    var url = '<?php echo base_url('/Respondao');?>';
-    var nextDate = document.getElementById("date3").value + " 00:00:00";
-    url += "?dt=" + nextDate;
-    console.log("A -> " + nextDate);
-    xhttpcompA.open("GET", url, true);
-    xhttpcompA.send();
-    
-}
-
-function updatemap2(){
-    var url = '<?php echo base_url('/Respondao');?>';
-    var nextDate = document.getElementById("date4").value + " 00:00:00";
-    url += "?dt=" + nextDate;
-    console.log("B -> " +nextDate);
-    xhttpcompB.open("GET", url, true);
-    xhttpcompB.send();
-    
-}
-
-
 
 function stopComparator(){
     startRefreshTimer();
