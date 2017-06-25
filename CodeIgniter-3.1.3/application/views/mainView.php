@@ -95,28 +95,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<!-- FORM -->
 								
 									<!-- Alterar a /action_page.php -->
-									<form action="/action_page.php">
+									
 										<div class="w3-container w3-light-grey w3-text-blue w3-margin w3-border w3-border-cyan">
 										<h3 class="w3-center">Contact Us</h3>
 										 
 										<div class="w3-row w3-section">
 										  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-envelope-o"></i></div>
 											<div class="w3-rest">
-											  <input class="w3-input w3-border" name="email" type="text" placeholder="Email">
+											  <input id="mail" class="w3-input w3-border" name="email" type="text" placeholder="Email">
 											</div>
 										</div>
 
 										<div class="w3-row w3-section">
 										  <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-pencil"></i></div>
 											<div class="w3-rest">
-											  <input class="w3-input w3-border" name="message" type="text" placeholder="Message">
+											  <input id="pergunta" class="w3-input w3-border" name="message" type="text" placeholder="Message">
 											</div>
 										</div>
 
-										<button class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding">Send</button>
+										<button onclick="insertFaqs()" class="w3-button w3-block w3-section w3-blue w3-ripple w3-padding">Send</button>
 										</div>
 										<br>
-									</form>
+								
 									<!--END FORM -->
 								<p>
 								</div>
